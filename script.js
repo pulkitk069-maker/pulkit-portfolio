@@ -1,11 +1,10 @@
-// Typing Animation
 const words = ["Video Editor", "Gamer", "BCA Student", "Tech Enthusiast"];
 let i = 0;
 let timer;
 
 function typeWriter() {
     const element = document.querySelector('.type-text');
-    if(!element) return;
+    if (!element) return;
     const text = words[i];
     let currentText = element.innerText;
 
@@ -19,7 +18,7 @@ function typeWriter() {
 
 function eraseText() {
     const element = document.querySelector('.type-text');
-    if(!element) return;
+    if (!element) return;
     let currentText = element.innerText;
 
     if (currentText.length > 0) {
@@ -33,9 +32,4 @@ function eraseText() {
 
 window.onload = function() {
     typeWriter();
-    // Initialize AOS (Scroll Animation)
-    AOS.init({
-        duration: 1000,
-        once: true,
-    });
 };
