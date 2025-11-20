@@ -1,10 +1,11 @@
-// Typing Animation Logic
+// Typing Effect
 const words = ["Student.", "Gamer.", "Video Editor.", "Tech Enthusiast."];
 let i = 0;
 let timer;
 
 function typeWriter() {
     const element = document.querySelector('.typing-text');
+    if(!element) return;
     const text = words[i];
     let currentText = element.innerText;
 
@@ -18,6 +19,7 @@ function typeWriter() {
 
 function eraseText() {
     const element = document.querySelector('.typing-text');
+    if(!element) return;
     let currentText = element.innerText;
 
     if (currentText.length > 0) {
@@ -29,7 +31,18 @@ function eraseText() {
     }
 }
 
-// Start animation on load
-window.onload = function() {
-    typeWriter();
-};
+// Page Navigation
+function showHome() {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('home').classList.add('active');
+    window.scrollTo(0,0);
+}
+
+function openPage(pageId) {
+    document.getElementById('home').classList.remove('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0,0);
+}
+
+window.onload = function() { typeWriter(); };
