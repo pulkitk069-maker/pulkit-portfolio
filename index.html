@@ -3,341 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulkit | The Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Pulkit | Portfolio</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cyber: ['Orbitron', 'sans-serif'],
-                        body: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        neon: '#b026ff',   // Purple
-                        cyan: '#00f3ff',   // Blue
-                        gold: '#ffd700',   // Gaming Gold
-                        dark: '#020205',   // Deep Black
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 2s infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 10px #b026ff' },
-                            '50%': { boxShadow: '0 0 25px #00f3ff' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { background-color: #020205; color: #e2e8f0; overflow-x: hidden; }
-        
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(#b026ff, #00f3ff); border-radius: 10px; }
-
-        /* GLOWING NAME */
-        .name-glow {
-            text-shadow: 0 0 15px rgba(176, 38, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.5);
-        }
-
-        /* NAVIGATION CARDS (SQUARE) */
-        .nav-card {
-            aspect-ratio: 1/1;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-radius: 15px;
-        }
-        .nav-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: #00f3ff;
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-        }
-        .nav-card i { font-size: 2.5rem; margin-bottom: 10px; transition: 0.3s; }
-        .nav-card:hover i { transform: scale(1.1); color: #00f3ff; }
-
-        /* SECTIONS LOGIC */
-        .page-section { display: none; animation: slideUp 0.6s ease-out; }
-        .page-section.active { display: block; }
-        
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* TYPING CURSOR */
-        .typing::after { content: '|'; animation: blink 1s infinite; color: #b026ff; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* GOKU ASSISTANT (FIXED) */
-        .goku-assistant {
-            position: fixed;
-            bottom: 0;
-            left: -20px;
-            width: 180px;
-            z-index: 0; /* Content ke piche */
-            pointer-events: none;
-            filter: drop-shadow(0 0 20px rgba(176, 38, 255, 0.4));
-            opacity: 0.9;
-        }
-        @media(min-width: 768px) {
-            .goku-assistant { width: 300px; left: 20px; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-body">
+<body>
 
-    <img src="https://i.postimg.cc/q7cFLYs7/aa638ac39b1a944cd6227cfb2199facd.gif" 
-         class="goku-assistant animate-float" alt="Assistant">
-
-    <nav class="fixed w-full z-50 top-0 bg-black/80 backdrop-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="font-cyber text-2xl font-bold text-white cursor-pointer hover:text-cyan transition" onclick="showHome()">
-                PULKIT<span class="text-neon">.DEV</span>
-            </div>
-            <div class="flex gap-5 text-xl">
-                <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:pulkitk069@gmail.com" class="text-gray-400 hover:text-white transition"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
+    <nav class="navbar">
+        <div class="logo">PULKIT<span class="dot">.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gaming">Gaming</a></li>
+            <li><a href="#editing">Editing</a></li>
+            <li><a href="#contact" class="btn-contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <div id="home" class="page-section active min-h-screen pt-32 pb-20 px-4 max-w-6xl mx-auto relative z-10">
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="badge">SYSTEM ONLINE</div>
+            <h1 class="glitch-name" data-text="PULKIT">PULKIT</h1>
+            <h2 class="typing-container">I am a <span class="text-highlight typing-text"></span></h2>
+            <p class="bio">
+                BCA Student at <strong>DDU University</strong>. Exploring the intersection of <br>
+                <strong>AI & Data Science</strong> while dominating in <strong>BGMI</strong>.
+            </p>
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="btn social"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="btn social"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://t.me/Suspicious_0ne" target="_blank" class="btn social"><i class="fab fa-telegram"></i> Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-container">
+        <h2 class="section-title">ACADEMIC <span class="text-highlight">PROFILE</span></h2>
         
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="md:w-2/3 text-center md:text-left md:pl-10">
-                <div class="inline-block border border-cyan px-3 py-1 rounded text-cyan text-xs font-bold tracking-[0.2em] mb-6 animate-pulse">SYSTEM ONLINE</div>
+        <div class="grid-container">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Education</h3>
+                <ul>
+                    <li><strong>Degree:</strong> BCA (MLDS)</li>
+                    <li><strong>University:</strong> DDU Gorakhpur</li>
+                    <li><strong>Year:</strong> 1st Semester</li>
+                    <li><strong>Focus:</strong> AI & Machine Learning</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-code"></i></div>
+                <h3>Technical Skills</h3>
+                <div class="skill-bar">
+                    <span>C Programming</span>
+                    <div class="bar"><div class="fill" style="width:40%"></div></div>
+                </div>
+                <div class="skill-bar">
+                    <span>Python Basics</span>
+                    <div class="bar"><div class="fill" style="width:30%"></div></div>
+                </div>
+                 <div class="skill-bar">
+                    <span>AI Tools</span>
+                    <div class="bar"><div class="fill" style="width:90%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gaming" class="section-container">
+        <h2 class="section-title">GAMING <span class="text-highlight">STATS</span></h2>
+        
+        <div class="gaming-profile">
+            <div class="game-info">
+                <h3>BGMI ELITE</h3>
+                <p class="ign">IGN: 「PULKIT'」</p>
+                <p class="uid">UID: <span class="highlight">55572783812</span></p>
                 
-                <h1 class="text-6xl md:text-9xl font-cyber font-black mb-4 text-white name-glow">
-                    PULKIT
-                </h1>
-                
-                <h2 class="text-2xl md:text-4xl text-gray-200 font-bold mb-6">
-                    I am a <span class="text-neon typing" id="typewriter"></span>
-                </h2>
-
-                <p class="text-gray-400 text-lg max-w-xl leading-relaxed mb-8 md:mr-auto">
-                    Welcome to my portfolio. I am a <strong>BCA Student</strong> exploring the world of <strong>AI & Data Science</strong>. 
-                    I balance my life between coding, dominating in <strong>BGMI</strong>, and creating visual art through <strong>Editing</strong>.
-                </p>
-
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start mb-16">
-                    <a href="https://t.me/Suspicious_0ne" target="_blank" class="bg-blue-500/20 border border-blue-500 text-blue-400 px-6 py-2 rounded-full font-bold hover:bg-blue-500 hover:text-white transition">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-full font-bold hover:bg-red-500 hover:text-white transition">
-                        <i class="fab fa-youtube mr-2"></i> YouTube
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="md:pl-10 mt-8">
-            <h3 class="text-white font-cyber text-xl mb-6 border-l-4 border-neon pl-3">ACCESS MODULES</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
-                
-                <div onclick="openPage('study')" class="nav-card group">
-                    <i class="fas fa-graduation-cap text-gray-400 group-hover:text-cyan"></i>
-                    <h4 class="font-cyber font-bold text-white">ACADEMICS</h4>
-                </div>
-
-                <div onclick="openPage('gaming')" class="nav-card group">
-                    <i class="fas fa-gamepad text-gray-400 group-hover:text-gold"></i>
-                    <h4 class="font-cyber font-bold text-white">GAMING</h4>
-                </div>
-
-                <div onclick="openPage('editing')" class="nav-card group">
-                    <i class="fas fa-video text-gray-400 group-hover:text-neon"></i>
-                    <h4 class="font-cyber font-bold text-white">EDITING</h4>
-                </div>
-
-                <div onclick="openPage('gallery')" class="nav-card group">
-                    <i class="fas fa-camera text-gray-400 group-hover:text-pink-500"></i>
-                    <h4 class="font-cyber font-bold text-white">GALLERY</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="study" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
-        <button onclick="showHome()" class="text-cyan mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
-        
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
-            <h2 class="text-4xl font-cyber font-black text-white mb-8">ACADEMIC <span class="text-cyan">PROFILE</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/20 pb-2">🎓 Education</h3>
-                    <ul class="space-y-4 text-gray-300">
-                        <li>
-                            <span class="block text-xs text-cyan uppercase font-bold">University</span>
-                            <span class="text-lg font-bold text-white">DDU Gorakhpur University</span>
-                        </li>
-                        <li>
-                            <span class="block text-xs text-cyan uppercase font-bold">Course</span>
-                            <span class="text-lg font-bold text-white">BCA (MLDS)</span>
-                            <span class="text-sm text-gray-500">Machine Learning & Data Science</span>
-                        </li>
-                         <li>
-                            <span class="block text-xs text-cyan uppercase font-bold">Current Status</span>
-                            <span class="text-lg font-bold text-white">1st Semester</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/20 pb-2">💻 Tech Stack</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between text-sm mb-1"><span>C Programming</span> <span class="text-cyan">Learning</span></div>
-                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 40%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1"><span>Python Basics</span> <span class="text-cyan">Exploring</span></div>
-                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 30%"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1"><span>AI Tools</span> <span class="text-cyan">Pro User</span></div>
-                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 95%"></div></div>
-                        </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h4>Ace Dominator</h4>
+                        <span>Highest Tier</span>
+                    </div>
+                    <div class="stat-box">
+                        <h4>5.2+</h4>
+                        <span>KD Ratio</span>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Assaulter</h4>
+                        <span>Role</span>
+                    </div>
+                    <div class="stat-box">
+                        <h4>POCO M4 Pro</h4>
+                        <span>Device (40FPS)</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div id="gaming" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
-        <button onclick="showHome()" class="text-gold mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
-
-        <div class="bg-black border border-gold/30 rounded-2xl p-8 relative overflow-hidden">
-            <div class="absolute top-0 right-0 opacity-20 pointer-events-none">
-                <img src="https://i.postimg.cc/tCV2kwbw/dggtsbw-a1cd47a6-1609-41a7-9c75-134b9963c4f1.gif" class="w-64">
-            </div>
-
-            <h2 class="text-5xl font-cyber font-black text-white italic mb-2">BGMI <span class="text-gold">ELITE</span></h2>
-            <p class="text-gray-400 mb-8">UID: <span class="text-gold font-mono font-bold">55572783812</span></p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="space-y-4">
-                    <img src="https://i.postimg.cc/gkdWbVJm/IMG-20251120-WA0024.jpg" class="rounded-xl border border-white/10 w-full object-cover shadow-lg">
-                    <img src="https://i.postimg.cc/Wp0vyWsq/IMG-20251120-WA0023.jpg" class="rounded-xl border border-white/10 w-full object-cover shadow-lg">
-                </div>
-                
-                <div class="flex flex-col justify-center space-y-6">
-                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
-                        <h3 class="text-2xl font-bold text-white">Ace Dominator</h3>
-                        <p class="text-xs text-gray-500">HIGHEST TIER</p>
-                    </div>
-                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
-                        <h3 class="text-2xl font-bold text-white">5+ KD</h3>
-                        <p class="text-xs text-gray-500">K/D RATIO</p>
-                    </div>
-                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
-                        <h3 class="text-2xl font-bold text-white">Assaulter</h3>
-                        <p class="text-xs text-gray-500">ROLE</p>
-                    </div>
-                     <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
-                        <h3 class="text-xl font-bold text-white">POCO M4 Pro</h3>
-                        <p class="text-xs text-gray-500">DEVICE (40 FPS)</p>
-                    </div>
-                </div>
+            <div class="game-img">
+                <img src="https://i.postimg.cc/gkdWbVJm/IMG-20251120-WA0024.jpg" alt="BGMI Profile">
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="editing" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
-        <button onclick="showHome()" class="text-neon mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
+    <section id="editing" class="section-container">
+        <h2 class="section-title">CREATIVE <span class="text-highlight">WORK</span></h2>
+        <p class="subtitle">Video Editing using CapCut & Alight Motion</p>
         
-        <h2 class="text-4xl font-cyber font-black text-white mb-10">VFX & <span class="text-neon">EDITS</span></h2>
-        <p class="text-gray-400 mb-8">Edited on <span class="text-white font-bold">CapCut & Alight Motion</span>.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white/5 p-2 rounded-xl border border-neon/30">
-                <iframe src="https://www.instagram.com/reel/C6TfZSwyAVc/embed" width="100%" height="450" frameborder="0" scrolling="no"></iframe>
+        <div class="grid-container">
+            <div class="video-card">
+                <iframe src="https://www.instagram.com/reel/C6TfZSwyAVc/embed" frameborder="0"></iframe>
             </div>
-             <div class="bg-white/5 p-2 rounded-xl border border-neon/30">
-                <iframe src="https://www.instagram.com/reel/CvjadphBmWt/embed" width="100%" height="450" frameborder="0" scrolling="no"></iframe>
+            <div class="video-card">
+                <iframe src="https://www.instagram.com/reel/CvjadphBmWt/embed" frameborder="0"></iframe>
             </div>
         </div>
         
-        <div class="mt-10 text-center">
-            <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="text-neon border border-neon px-6 py-2 rounded-full hover:bg-neon hover:text-white transition">View Editing Archive</a>
+        <div class="center-btn">
+            <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="btn">View More Edits</a>
         </div>
-    </div>
+    </section>
 
-    <div id="gallery" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
-        <button onclick="showHome()" class="text-pink-500 mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
-        
-        <h2 class="text-4xl font-cyber font-black text-white mb-10">CREATIVE <span class="text-pink-500">SHOTS</span></h2>
-        
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 1 (Coming Soon)</div>
-            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 2 (Coming Soon)</div>
-            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 3 (Coming Soon)</div>
-            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 4 (Coming Soon)</div>
+    <section id="contact" class="section-container">
+        <div class="contact-box">
+            <h2>Let's Connect</h2>
+            <p>Whether for a Gaming collab, Editing work, or Study discussion.</p>
+            <a href="mailto:pulkitk069@gmail.com" class="email-link">pulkitk069@gmail.com</a>
         </div>
-    </div>
+        <footer>
+            <p>© 2025 Pulkit Portfolio.</p>
+        </footer>
+    </section>
 
-    <script>
-        // Typing Animation
-        const words = ["Student.", "Gamer.", "Video Editor.", "Tech Enthusiast."];
-        let i = 0;
-        let timer;
-
-        function typeWriter() {
-            const text = words[i];
-            const element = document.getElementById('typewriter');
-            let currentText = element.innerText;
-            if (currentText.length < text.length) {
-                element.innerText = text.substring(0, currentText.length + 1);
-                timer = setTimeout(typeWriter, 100);
-            } else {
-                setTimeout(eraseText, 2000);
-            }
-        }
-        function eraseText() {
-            const element = document.getElementById('typewriter');
-            let currentText = element.innerText;
-            if (currentText.length > 0) {
-                element.innerText = currentText.substring(0, currentText.length - 1);
-                timer = setTimeout(eraseText, 50);
-            } else {
-                i = (i + 1) % words.length;
-                setTimeout(typeWriter, 500);
-            }
-        }
-
-        // Navigation Logic
-        function showHome() {
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('home').classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        function openPage(pageId) {
-            document.getElementById('home').classList.remove('active');
-            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        window.onload = typeWriter;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
