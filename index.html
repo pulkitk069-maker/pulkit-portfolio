@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulkit | The Multiverse</title>
+    <title>Pulkit | The Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -14,24 +14,22 @@
                 extend: {
                     fontFamily: {
                         cyber: ['Orbitron', 'sans-serif'],
-                        tech: ['Rajdhani', 'sans-serif'],
+                        body: ['Outfit', 'sans-serif'],
                     },
                     colors: {
-                        neon: '#b026ff',   // Purple Neon
-                        cyan: '#00f3ff',   // Blue Neon
-                        gold: '#ffd700',   // For Gaming
-                        dark: '#050505',   // Pitch Black
-                        panel: '#0a0a0a',  
+                        neon: '#b026ff',   // Purple
+                        cyan: '#00f3ff',   // Blue
+                        gold: '#ffd700',   // Gaming Gold
+                        dark: '#020205',   // Deep Black
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-glow': 'pulseGlow 2s infinite',
-                        'spin-slow': 'spin 10s linear infinite',
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0) translateX(0)' },
-                            '50%': { transform: 'translateY(-15px) translateX(5px)' },
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         },
                         pulseGlow: {
                             '0%, 100%': { boxShadow: '0 0 10px #b026ff' },
@@ -43,311 +41,303 @@
         }
     </script>
     <style>
-        body { background-color: #000; color: #fff; overflow-x: hidden; }
+        body { background-color: #020205; color: #e2e8f0; overflow-x: hidden; }
         
         /* SCROLLBAR */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(#b026ff, #00f3ff); border-radius: 10px; }
 
-        /* GLITCH TEXT */
-        .glitch {
-            position: relative;
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim {
-            0% { text-shadow: -2px 0 #b026ff; }
-            100% { text-shadow: 2px 0 #00f3ff; }
+        /* GLOWING NAME */
+        .name-glow {
+            text-shadow: 0 0 15px rgba(176, 38, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.5);
         }
 
-        /* CARD HOVER EFFECTS */
-        .hub-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+        /* NAVIGATION CARDS (SQUARE) */
+        .nav-card {
+            aspect-ratio: 1/1;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 15px;
         }
-        .hub-card:hover {
-            transform: scale(1.02);
+        .nav-card:hover {
+            background: rgba(255,255,255,0.08);
             border-color: #00f3ff;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
         }
+        .nav-card i { font-size: 2.5rem; margin-bottom: 10px; transition: 0.3s; }
+        .nav-card:hover i { transform: scale(1.1); color: #00f3ff; }
 
-        /* SECTIONS VISIBILITY */
-        .section { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* SECTIONS LOGIC */
+        .page-section { display: none; animation: slideUp 0.6s ease-out; }
+        .page-section.active { display: block; }
+        
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* ASSISTANT CHARACTER */
-        .assistant {
+        /* TYPING CURSOR */
+        .typing::after { content: '|'; animation: blink 1s infinite; color: #b026ff; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* GOKU ASSISTANT (FIXED) */
+        .goku-assistant {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 120px;
-            z-index: 50;
-            pointer-events: none; /* Click through */
-            filter: drop-shadow(0 0 15px rgba(176, 38, 255, 0.6));
-            animation: float 5s infinite ease-in-out;
+            bottom: 0;
+            left: -20px;
+            width: 180px;
+            z-index: 0; /* Content ke piche */
+            pointer-events: none;
+            filter: drop-shadow(0 0 20px rgba(176, 38, 255, 0.4));
+            opacity: 0.9;
+        }
+        @media(min-width: 768px) {
+            .goku-assistant { width: 300px; left: 20px; }
         }
     </style>
 </head>
-<body class="font-tech text-gray-200">
+<body class="font-body">
 
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3ZxeXF6eXF6eXF6eXF6eXF6eXF6eXF6eXF6eXF6eXF6/WOb8AeNnCJ01G/giphy.gif" 
-         class="assistant" alt="AI Assistant">
+    <img src="https://i.postimg.cc/q7cFLYs7/aa638ac39b1a944cd6227cfb2199facd.gif" 
+         class="goku-assistant animate-float" alt="Assistant">
 
-    <nav class="fixed w-full z-40 top-0 bg-black/80 backdrop-blur border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="font-cyber text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon to-cyan cursor-pointer" onclick="showSection('home')">
-                PULKIT<span class="text-white">_HUB</span>
+    <nav class="fixed w-full z-50 top-0 bg-black/80 backdrop-blur border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="font-cyber text-2xl font-bold text-white cursor-pointer hover:text-cyan transition" onclick="showHome()">
+                PULKIT<span class="text-neon">.DEV</span>
             </div>
-            <div class="text-xs font-mono text-cyan animate-pulse">SYSTEM ONLINE ●</div>
+            <div class="flex gap-5 text-xl">
+                <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:pulkitk069@gmail.com" class="text-gray-400 hover:text-white transition"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
     </nav>
 
-    <div class="pt-20 pb-10 px-4 max-w-6xl mx-auto min-h-screen">
-
-        <div id="home" class="section active">
-            <div class="text-center py-10">
-                <div class="inline-block border border-neon px-4 py-1 rounded-full text-neon text-sm font-bold mb-4 tracking-widest">WELCOME TO MY UNIVERSE</div>
-                <h1 class="text-6xl md:text-8xl font-cyber font-black text-white mb-4 glitch uppercase">Pulkit</h1>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                    Student • Gamer • Editor • Creator <br>
-                    <span class="text-cyan text-sm font-mono">SELECT A MODULE TO ACCESS DATA</span>
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+    <div id="home" class="page-section active min-h-screen pt-32 pb-20 px-4 max-w-6xl mx-auto relative z-10">
+        
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-2/3 text-center md:text-left md:pl-10">
+                <div class="inline-block border border-cyan px-3 py-1 rounded text-cyan text-xs font-bold tracking-[0.2em] mb-6 animate-pulse">SYSTEM ONLINE</div>
                 
-                <div onclick="showSection('study')" class="hub-card p-8 rounded-2xl cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition"><i class="fas fa-brain text-6xl text-cyan"></i></div>
-                    <h3 class="text-2xl font-cyber font-bold text-white mb-2 group-hover:text-cyan">ACADEMICS & AI</h3>
-                    <p class="text-sm text-gray-400">BCA (MLDS), Python, C++, Data Science Journey.</p>
-                    <div class="mt-4 h-1 w-full bg-gray-800 rounded overflow-hidden"><div class="h-full bg-cyan w-3/4"></div></div>
-                </div>
+                <h1 class="text-6xl md:text-9xl font-cyber font-black mb-4 text-white name-glow">
+                    PULKIT
+                </h1>
+                
+                <h2 class="text-2xl md:text-4xl text-gray-200 font-bold mb-6">
+                    I am a <span class="text-neon typing" id="typewriter"></span>
+                </h2>
 
-                <div onclick="showSection('gaming')" class="hub-card p-8 rounded-2xl cursor-pointer group relative overflow-hidden border-l-4 border-l-transparent hover:border-l-gold">
-                    <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition"><i class="fas fa-crosshairs text-6xl text-gold"></i></div>
-                    <h3 class="text-2xl font-cyber font-bold text-white mb-2 group-hover:text-gold">GAMING PROFILE</h3>
-                    <p class="text-sm text-gray-400">BGMI Ace Dominator, 5+ KD, Assaulter.</p>
-                    <div class="mt-4 h-1 w-full bg-gray-800 rounded overflow-hidden"><div class="h-full bg-gold w-full"></div></div>
-                </div>
+                <p class="text-gray-400 text-lg max-w-xl leading-relaxed mb-8 md:mr-auto">
+                    Welcome to my portfolio. I am a <strong>BCA Student</strong> exploring the world of <strong>AI & Data Science</strong>. 
+                    I balance my life between coding, dominating in <strong>BGMI</strong>, and creating visual art through <strong>Editing</strong>.
+                </p>
 
-                <div onclick="showSection('editing')" class="hub-card p-8 rounded-2xl cursor-pointer group relative overflow-hidden border-l-4 border-l-transparent hover:border-l-neon">
-                    <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition"><i class="fas fa-film text-6xl text-neon"></i></div>
-                    <h3 class="text-2xl font-cyber font-bold text-white mb-2 group-hover:text-neon">VFX & EDITING</h3>
-                    <p class="text-sm text-gray-400">CapCut, Alight Motion, Reels Showcase.</p>
-                    <div class="mt-4 h-1 w-full bg-gray-800 rounded overflow-hidden"><div class="h-full bg-neon w-4/5"></div></div>
-                </div>
-
-                <div onclick="showSection('creative')" class="hub-card p-8 rounded-2xl cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition"><i class="fas fa-camera text-6xl text-pink-500"></i></div>
-                    <h3 class="text-2xl font-cyber font-bold text-white mb-2 group-hover:text-pink-500">CREATIVE GALLERY</h3>
-                    <p class="text-sm text-gray-400">Photography, Web Dev, Hobbies.</p>
-                </div>
-
-                <div onclick="showSection('contact')" class="hub-card p-8 rounded-2xl cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition"><i class="fas fa-id-card text-6xl text-green-500"></i></div>
-                    <h3 class="text-2xl font-cyber font-bold text-white mb-2 group-hover:text-green-500">CONNECT</h3>
-                    <p class="text-sm text-gray-400">Socials, Telegram, Email.</p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start mb-16">
+                    <a href="https://t.me/Suspicious_0ne" target="_blank" class="bg-blue-500/20 border border-blue-500 text-blue-400 px-6 py-2 rounded-full font-bold hover:bg-blue-500 hover:text-white transition">
+                        <i class="fab fa-telegram mr-2"></i> Telegram
+                    </a>
+                    <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-full font-bold hover:bg-red-500 hover:text-white transition">
+                        <i class="fab fa-youtube mr-2"></i> YouTube
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div id="study" class="section">
-            <button onclick="showSection('home')" class="mb-6 text-cyan hover:underline">← BACK TO HUB</button>
-            
-            <div class="border-l-4 border-cyan pl-6 mb-10">
-                <h2 class="text-4xl font-cyber font-bold text-white">ACADEMIC <span class="text-cyan">DATABASE</span></h2>
-                <p class="text-gray-400 text-lg mt-2">Pursuing excellence in Machine Learning & Data Science.</p>
-            </div>
+        <div class="md:pl-10 mt-8">
+            <h3 class="text-white font-cyber text-xl mb-6 border-l-4 border-neon pl-3">ACCESS MODULES</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+                
+                <div onclick="openPage('study')" class="nav-card group">
+                    <i class="fas fa-graduation-cap text-gray-400 group-hover:text-cyan"></i>
+                    <h4 class="font-cyber font-bold text-white">ACADEMICS</h4>
+                </div>
 
+                <div onclick="openPage('gaming')" class="nav-card group">
+                    <i class="fas fa-gamepad text-gray-400 group-hover:text-gold"></i>
+                    <h4 class="font-cyber font-bold text-white">GAMING</h4>
+                </div>
+
+                <div onclick="openPage('editing')" class="nav-card group">
+                    <i class="fas fa-video text-gray-400 group-hover:text-neon"></i>
+                    <h4 class="font-cyber font-bold text-white">EDITING</h4>
+                </div>
+
+                <div onclick="openPage('gallery')" class="nav-card group">
+                    <i class="fas fa-camera text-gray-400 group-hover:text-pink-500"></i>
+                    <h4 class="font-cyber font-bold text-white">GALLERY</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="study" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
+        <button onclick="showHome()" class="text-cyan mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
+        
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
+            <h2 class="text-4xl font-cyber font-black text-white mb-8">ACADEMIC <span class="text-cyan">PROFILE</span></h2>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-panel p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-2">🎓 CURRENT STATUS</h3>
-                    <ul class="space-y-4 font-mono text-sm">
-                        <li class="flex justify-between"><span class="text-gray-400">Institute:</span> <span class="text-white text-right">DDU University, Gorakhpur</span></li>
-                        <li class="flex justify-between"><span class="text-gray-400">Course:</span> <span class="text-white text-right">BCA (MLDS)</span></li>
-                        <li class="flex justify-between"><span class="text-gray-400">Semester:</span> <span class="text-white text-right">1st Semester</span></li>
-                        <li class="flex justify-between"><span class="text-gray-400">Background:</span> <span class="text-white text-right">12th Pass (Science)</span></li>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/20 pb-2">🎓 Education</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li>
+                            <span class="block text-xs text-cyan uppercase font-bold">University</span>
+                            <span class="text-lg font-bold text-white">DDU Gorakhpur University</span>
+                        </li>
+                        <li>
+                            <span class="block text-xs text-cyan uppercase font-bold">Course</span>
+                            <span class="text-lg font-bold text-white">BCA (MLDS)</span>
+                            <span class="text-sm text-gray-500">Machine Learning & Data Science</span>
+                        </li>
+                         <li>
+                            <span class="block text-xs text-cyan uppercase font-bold">Current Status</span>
+                            <span class="text-lg font-bold text-white">1st Semester</span>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="bg-panel p-6 rounded-xl border border-white/10">
-                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/10 pb-2">🚀 VISION & GOALS</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        My objective is to master <strong>Data Structures & Algorithms (DSA)</strong> and transition into <strong>AI Development</strong>. I am currently building a strong foundation in C Programming and Python Basics.
-                    </p>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Future roadmap includes Deep Learning, Neural Networks, and deploying scalable AI models.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-8 bg-panel p-6 rounded-xl border border-white/10">
-                <h3 class="text-xl font-bold text-white mb-6">SKILL MATRIX</h3>
-                <div class="space-y-6">
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="font-bold">C Programming</span> <span class="text-cyan">Learning...</span></div>
-                        <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 40%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="font-bold">Python</span> <span class="text-cyan">Basics</span></div>
-                        <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 30%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="font-bold">AI Tools Usage</span> <span class="text-cyan">Expert</span></div>
-                        <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 90%"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="gaming" class="section">
-            <button onclick="showSection('home')" class="mb-6 text-gold hover:underline">← BACK TO HUB</button>
-            
-            <div class="relative bg-gradient-to-r from-yellow-900/40 to-black p-8 rounded-2xl border border-gold/30 mb-10">
-                <div class="absolute top-4 right-4 text-gold text-xs font-bold border border-gold px-2 py-1 rounded">VERIFIED PLAYER</div>
-                <h2 class="text-5xl font-cyber font-black text-white italic">BGMI <span class="text-gold">PROFILE</span></h2>
-                <div class="mt-6 flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-32 h-32 rounded-full border-4 border-gold overflow-hidden bg-black">
-                        <img src="https://i.pinimg.com/736x/ea/1f/64/ea1f64668a0af149a3277db9e9e708db.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-center md:text-left">
-                        <h3 class="text-3xl font-bold text-white tracking-widest">「PULKIT'」</h3>
-                        <p class="text-gray-400 font-mono">UID: <span class="text-gold">55572783812</span></p>
-                        <div class="flex gap-2 mt-2 justify-center md:justify-start">
-                            <span class="bg-gold text-black px-2 py-0.5 rounded text-xs font-bold">ASSAULTER</span>
-                            <span class="bg-gray-700 text-white px-2 py-0.5 rounded text-xs font-bold">IGL</span>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4 border-b border-white/20 pb-2">💻 Tech Stack</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>C Programming</span> <span class="text-cyan">Learning</span></div>
+                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 40%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>Python Basics</span> <span class="text-cyan">Exploring</span></div>
+                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 30%"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1"><span>AI Tools</span> <span class="text-cyan">Pro User</span></div>
+                            <div class="w-full bg-black h-2 rounded"><div class="bg-cyan h-2 rounded" style="width: 95%"></div></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="bg-panel p-4 rounded text-center border border-white/10">
-                    <div class="text-gold text-2xl font-bold">ACE</div>
-                    <div class="text-xs text-gray-500">DOMINATOR</div>
-                </div>
-                <div class="bg-panel p-4 rounded text-center border border-white/10">
-                    <div class="text-white text-2xl font-bold">5+</div>
-                    <div class="text-xs text-gray-500">KD RATIO</div>
-                </div>
-                <div class="bg-panel p-4 rounded text-center border border-white/10">
-                    <div class="text-white text-2xl font-bold">4 Finger</div>
-                    <div class="text-xs text-gray-500">+ GYROSCOPE</div>
-                </div>
-                <div class="bg-panel p-4 rounded text-center border border-white/10">
-                    <div class="text-white text-2xl font-bold">40 FPS</div>
-                    <div class="text-xs text-gray-500">POCO M4 PRO</div>
-                </div>
-            </div>
-            
-            <p class="text-center text-gray-500 text-sm italic">"Optimized gameplay on limited hardware. Reflexes over FPS."</p>
         </div>
+    </div>
 
-        <div id="editing" class="section">
-            <button onclick="showSection('home')" class="mb-6 text-neon hover:underline">← BACK TO HUB</button>
-            
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-cyber font-bold text-white">VISUAL <span class="text-neon">ARTS</span></h2>
-                <p class="text-gray-400 mt-2">Editing on CapCut & Alight Motion. Pushing mobile limits.</p>
+    <div id="gaming" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
+        <button onclick="showHome()" class="text-gold mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
+
+        <div class="bg-black border border-gold/30 rounded-2xl p-8 relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-20 pointer-events-none">
+                <img src="https://i.postimg.cc/tCV2kwbw/dggtsbw-a1cd47a6-1609-41a7-9c75-134b9963c4f1.gif" class="w-64">
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-panel p-2 rounded-xl border border-white/10">
-                    <h3 class="text-center text-white font-bold mb-2">Cinematic Edit</h3>
-                    <div class="w-full h-[500px] bg-black rounded overflow-hidden">
-                        <iframe src="https://www.instagram.com/reel/C6TfZSwyAVc/embed" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-                    </div>
-                </div>
-                <div class="bg-panel p-2 rounded-xl border border-white/10">
-                    <h3 class="text-center text-white font-bold mb-2">Beat Sync</h3>
-                    <div class="w-full h-[500px] bg-black rounded overflow-hidden">
-                        <iframe src="https://www.instagram.com/reel/CvjadphBmWt/embed" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="inline-block border border-neon text-neon px-6 py-2 rounded-full hover:bg-neon hover:text-white transition">Check Old Edits Archive</a>
-            </div>
-        </div>
+            <h2 class="text-5xl font-cyber font-black text-white italic mb-2">BGMI <span class="text-gold">ELITE</span></h2>
+            <p class="text-gray-400 mb-8">UID: <span class="text-gold font-mono font-bold">55572783812</span></p>
 
-        <div id="creative" class="section">
-             <button onclick="showSection('home')" class="mb-6 text-pink-500 hover:underline">← BACK TO HUB</button>
-             
-             <div class="mb-10">
-                <h2 class="text-4xl font-cyber font-bold text-white">CREATIVE <span class="text-pink-500">GALLERY</span></h2>
-                <p class="text-gray-400">Photography • Web Development • Experiments</p>
-             </div>
-
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div class="bg-panel p-6 rounded-xl border border-white/10">
-                     <h3 class="text-xl font-bold text-white mb-4"><i class="fas fa-code text-pink-500 mr-2"></i> Web Projects</h3>
-                     <ul class="space-y-3 text-gray-400">
-                         <li class="bg-black p-3 rounded flex justify-between items-center">
-                             <span>Portfolio Website (V7.0)</span>
-                             <span class="text-xs bg-pink-500 text-white px-2 py-1 rounded">Live</span>
-                         </li>
-                         <li class="bg-black p-3 rounded flex justify-between items-center">
-                             <span>Restaurant UI Concept</span>
-                             <span class="text-xs border border-gray-500 px-2 py-1 rounded">Prototype</span>
-                         </li>
-                     </ul>
-                 </div>
-
-                 <div class="bg-panel p-6 rounded-xl border border-white/10">
-                     <h3 class="text-xl font-bold text-white mb-4"><i class="fas fa-camera text-pink-500 mr-2"></i> Photography</h3>
-                     <div class="grid grid-cols-2 gap-2">
-                         <div class="h-24 bg-gray-800 rounded bg-[url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500')] bg-cover"></div>
-                         <div class="h-24 bg-gray-800 rounded bg-[url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=500')] bg-cover"></div>
-                         <div class="h-24 bg-gray-800 rounded bg-[url('https://images.unsplash.com/photo-1500634245200-e5245c7574ef?w=500')] bg-cover"></div>
-                         <div class="h-24 bg-gray-800 rounded bg-[url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500')] bg-cover"></div>
-                     </div>
-                     <p class="text-xs text-gray-500 mt-2 text-center">Captured by Me</p>
-                 </div>
-             </div>
-        </div>
-
-        <div id="contact" class="section">
-            <button onclick="showSection('home')" class="mb-6 text-green-500 hover:underline">← BACK TO HUB</button>
-            
-            <div class="max-w-2xl mx-auto text-center pt-10">
-                <h2 class="text-4xl font-cyber font-bold text-white mb-8">ESTABLISH <span class="text-green-500">CONNECTION</span></h2>
-                
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-4">
-                    <a href="mailto:pulkitk069@gmail.com" class="block bg-panel border border-white/10 p-4 rounded-xl hover:border-green-500 transition flex items-center justify-center gap-3">
-                        <i class="fas fa-envelope text-green-500"></i> pulkitk069@gmail.com
-                    </a>
-                    <a href="https://t.me/Suspicious_0ne" target="_blank" class="block bg-panel border border-white/10 p-4 rounded-xl hover:border-blue-400 transition flex items-center justify-center gap-3">
-                        <i class="fab fa-telegram text-blue-400"></i> Telegram (@Suspicious_0ne)
-                    </a>
-                    <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="block bg-panel border border-white/10 p-4 rounded-xl hover:border-pink-500 transition flex items-center justify-center gap-3">
-                        <i class="fab fa-instagram text-pink-500"></i> Instagram (_pulkit1_)
-                    </a>
-                    <div class="block bg-panel border border-white/5 p-4 rounded-xl opacity-50 flex items-center justify-center gap-3 cursor-not-allowed">
-                        <i class="fab fa-linkedin"></i> LinkedIn (Coming Soon)
+                    <img src="https://i.postimg.cc/gkdWbVJm/IMG-20251120-WA0024.jpg" class="rounded-xl border border-white/10 w-full object-cover shadow-lg">
+                    <img src="https://i.postimg.cc/Wp0vyWsq/IMG-20251120-WA0023.jpg" class="rounded-xl border border-white/10 w-full object-cover shadow-lg">
+                </div>
+                
+                <div class="flex flex-col justify-center space-y-6">
+                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
+                        <h3 class="text-2xl font-bold text-white">Ace Dominator</h3>
+                        <p class="text-xs text-gray-500">HIGHEST TIER</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
+                        <h3 class="text-2xl font-bold text-white">5+ KD</h3>
+                        <p class="text-xs text-gray-500">K/D RATIO</p>
+                    </div>
+                    <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
+                        <h3 class="text-2xl font-bold text-white">Assaulter</h3>
+                        <p class="text-xs text-gray-500">ROLE</p>
+                    </div>
+                     <div class="bg-white/5 p-4 rounded border-l-4 border-gold">
+                        <h3 class="text-xl font-bold text-white">POCO M4 Pro</h3>
+                        <p class="text-xs text-gray-500">DEVICE (40 FPS)</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div id="editing" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
+        <button onclick="showHome()" class="text-neon mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
+        
+        <h2 class="text-4xl font-cyber font-black text-white mb-10">VFX & <span class="text-neon">EDITS</span></h2>
+        <p class="text-gray-400 mb-8">Edited on <span class="text-white font-bold">CapCut & Alight Motion</span>.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white/5 p-2 rounded-xl border border-neon/30">
+                <iframe src="https://www.instagram.com/reel/C6TfZSwyAVc/embed" width="100%" height="450" frameborder="0" scrolling="no"></iframe>
+            </div>
+             <div class="bg-white/5 p-2 rounded-xl border border-neon/30">
+                <iframe src="https://www.instagram.com/reel/CvjadphBmWt/embed" width="100%" height="450" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+        
+        <div class="mt-10 text-center">
+            <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="text-neon border border-neon px-6 py-2 rounded-full hover:bg-neon hover:text-white transition">View Editing Archive</a>
+        </div>
+    </div>
+
+    <div id="gallery" class="page-section min-h-screen pt-28 px-4 max-w-5xl mx-auto relative z-20">
+        <button onclick="showHome()" class="text-pink-500 mb-8 hover:underline font-bold flex items-center gap-2"><i class="fas fa-arrow-left"></i> BACK HOME</button>
+        
+        <h2 class="text-4xl font-cyber font-black text-white mb-10">CREATIVE <span class="text-pink-500">SHOTS</span></h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 1 (Coming Soon)</div>
+            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 2 (Coming Soon)</div>
+            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 3 (Coming Soon)</div>
+            <div class="h-40 bg-gray-800 rounded flex items-center justify-center text-gray-500 text-xs">Photo 4 (Coming Soon)</div>
+        </div>
     </div>
 
     <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
+        // Typing Animation
+        const words = ["Student.", "Gamer.", "Video Editor.", "Tech Enthusiast."];
+        let i = 0;
+        let timer;
 
-            // Show selected section
-            const activeSec = document.getElementById(sectionId);
-            activeSec.classList.add('active');
-
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function typeWriter() {
+            const text = words[i];
+            const element = document.getElementById('typewriter');
+            let currentText = element.innerText;
+            if (currentText.length < text.length) {
+                element.innerText = text.substring(0, currentText.length + 1);
+                timer = setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
         }
+        function eraseText() {
+            const element = document.getElementById('typewriter');
+            let currentText = element.innerText;
+            if (currentText.length > 0) {
+                element.innerText = currentText.substring(0, currentText.length - 1);
+                timer = setTimeout(eraseText, 50);
+            } else {
+                i = (i + 1) % words.length;
+                setTimeout(typeWriter, 500);
+            }
+        }
+
+        // Navigation Logic
+        function showHome() {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById('home').classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        function openPage(pageId) {
+            document.getElementById('home').classList.remove('active');
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        window.onload = typeWriter;
     </script>
 </body>
 </html>
