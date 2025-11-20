@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulkit | Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#a855f7', // Purple
+                        secondary: '#0ea5e9', // Blue/Cyan
+                        dark: '#0a0a0a',    // Pitch Black bg
+                        card: '#171717',    // Slightly lighter card
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-25px) rotate(2deg)' },
+                        },
+                        pulseGlow: {
+                            '0%': { textShadow: '0 0 10px #a855f7, 0 0 20px #0ea5e9' },
+                            '100%': { textShadow: '0 0 20px #a855f7, 0 0 40px #0ea5e9, 0 0 60px #a855f7' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0a0a0a; color: #e2e8f0; overflow-x: hidden; }
+        
+        /* Super Glowing Name Effect */
+        .mega-glow {
+            background: linear-gradient(to right, #a855f7, #0ea5e9, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulseGlow 3s infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* General Neon Text */
+        .neon-text { text-shadow: 0 0 10px rgba(168, 85, 247, 0.6); }
+        
+        /* Hover animation for normal text */
+        .hover-glow:hover {
+            color: #0ea5e9;
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.8);
+            transform: translateX(5px);
+        }
+
+        /* Goku Character specific styles */
+        .character-container {
+            position: relative;
+            z-index: 1; /* Text ke piche rahega */
+        }
+        .anime-char {
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+            transition: transform 0.1s ease-out; /* Smooth parallax movement */
+        }
+
+        /* Cursor Typing Effect */
+        .typing-cursor::after { content: '|'; animation: blink 1s step-end infinite; color: #0ea5e9; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #a855f7, #0ea5e9); border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full top-0 z-50 bg-dark/70 backdrop-blur-lg border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+                <div class="font-black text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                    PULKIT<span class="text-white">.</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover-glow transition duration-300 font-bold text-sm uppercase tracking-widest">Home</a>
+                    <a href="#about" class="hover-glow transition duration-300 font-bold text-sm uppercase tracking-widest">About</a>
+                    <a href="#skills" class="hover-glow transition duration-300 font-bold text-sm uppercase tracking-widest">Skills</a>
+                    <a href="#contact" class="px-6 py-2 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-sm uppercase tracking-widest hover:shadow-[0_0_20px_rgba(168,85,247,0.7)] transition-all">Hire Me</a>
+                </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[150px] animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[150px] animate-pulse-slow" style="animation-delay: 2s"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-4 items-center relative z-10">
+            
+            <div class="text-center md:text-left order-2 md:order-1 reveal">
+                <h2 class="text-secondary font-bold tracking-[0.2em] uppercase mb-4 neon-text">Welcome to my world</h2>
+                <h1 class="text-6xl md:text-8xl font-black mb-6 mega-glow">
+                    PULKIT
+                </h1>
+                <h3 class="text-2xl md:text-3xl text-white mb-6 font-bold">
+                    I am a <span class="text-secondary typing-cursor" id="typewriter"></span>
+                </h3>
+                <p class="text-gray-400 mb-8 text-lg max-w-lg mx-auto md:mx-0 leading-relaxed font-medium">
+                    Transforming raw footage into compelling visual stories. Student by day, creative beast by night.
+                </p>
+                
+                <div class="flex gap-6 justify-center md:justify-start items-center mt-10">
+                    <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="group relative">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
+                        <div class="relative bg-dark h-14 w-14 bg-opacity-80 backdrop-blur rounded-full flex items-center justify-center border border-white/10">
+                             <i class="fab fa-instagram text-2xl text-pink-500"></i>
+                        </div>
+                    </a>
+                    <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="group relative">
+                         <div class="absolute -inset-2 bg-gradient-to-r from-red-600 to-orange-600 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-500"></div>
+                        <div class="relative bg-dark h-14 w-14 bg-opacity-80 backdrop-blur rounded-full flex items-center justify-center border border-white/10">
+                            <i class="fab fa-youtube text-2xl text-red-500"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="character-container order-1 md:order-2 flex justify-center reveal">
+                <img src="https://i.pinimg.com/originals/08/10/3c/08103c3f23d9414b863993163ce296d7.png" 
+                     alt="Goku Ultra Instinct" 
+                     class="anime-char w-3/4 md:w-full max-w-lg animate-float object-contain layer" data-speed="2">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 reveal">
+             <div class="text-center mb-12">
+                <h2 class="text-4xl font-black text-white uppercase tracking-wider">About <span class="text-primary neon-text">Me</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="bg-card/80 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 shadow-[0_0_30px_rgba(168,85,247,0.15)] hover:shadow-[0_0_50px_rgba(168,85,247,0.3)] transition duration-500">
+                <p class="text-gray-300 text-lg mb-8 leading-relaxed font-medium text-center md:text-left">
+                    I'm a student with a hunger for creativity. I don't just play games; I understand pacing, action, and visual storytelling. With <span class="text-secondary font-bold">4 years of experience</span> in mobile video editing (CapCut & Alight Motion), I push the limits of what's possible on a phone. I'm constantly learning and ready to level up.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 bg-dark/50 rounded-2xl border border-primary/30 hover-glow transition">
+                        <h3 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">4+ Yrs</h3>
+                        <p class="text-sm text-gray-400 uppercase font-bold mt-2">Editing Exp.</p>
+                    </div>
+                    <div class="p-6 bg-dark/50 rounded-2xl border border-secondary/30 hover-glow transition">
+                        <h3 class="text-4xl font-black text-secondary">Pro</h3>
+                        <p class="text-sm text-gray-400 uppercase font-bold mt-2">Mobile Editor</p>
+                    </div>
+                    <div class="p-6 bg-dark/50 rounded-2xl border border-yellow-500/30 hover-glow transition col-span-2 md:col-span-1">
+                        <h3 class="text-4xl font-black text-yellow-500">Gamer</h3>
+                        <p class="text-sm text-gray-400 uppercase font-bold mt-2">Competitive Sense</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 reveal">
+             <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white uppercase tracking-wider">My <span class="text-secondary neon-text">Skills</span></h2>
+                <div class="h-1 w-20 bg-gradient-to-r from-secondary to-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-card/80 backdrop-blur p-8 rounded-3xl border border-white/10 group hover:border-secondary/50 transition duration-500">
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-wider">
+                        <i class="fas fa-video text-secondary filter drop-shadow-[0_0_10px_#0ea5e9]"></i> Video Editing
+                    </h3>
+                    <div class="space-y-6 font-bold">
+                        <div>
+                            <div class="flex justify-between text-gray-300 mb-2"><span>CapCut (Mastery)</span> <span class="text-secondary">95%</span></div>
+                            <div class="w-full bg-dark rounded-full h-3 p-[2px] border border-white/10"><div class="bg-gradient-to-r from-secondary to-primary h-full rounded-full relative leading-none"><span class="absolute right-0 -top-8 bg-secondary text-xs p-1 rounded animate-pulse">OP</span></div></div>
+                        </div>
+                         <div>
+                            <div class="flex justify-between text-gray-300 mb-2"><span>Alight Motion (Advanced)</span> <span class="text-primary">85%</span></div>
+                            <div class="w-full bg-dark rounded-full h-3 p-[2px] border border-white/10"><div class="bg-gradient-to-r from-primary to-secondary h-full rounded-full" style="width: 85%"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card/80 backdrop-blur p-8 rounded-3xl border border-white/10 group hover:border-primary/50 transition duration-500">
+                    <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-wider">
+                        <i class="fas fa-gamepad text-primary filter drop-shadow-[0_0_10px_#a855f7]"></i> BGMI Skills
+                    </h3>
+                    <div class="space-y-6 font-bold">
+                         <div>
+                            <div class="flex justify-between text-gray-300 mb-2"><span>Reflexes & Aim</span> <span class="text-primary">92%</span></div>
+                            <div class="w-full bg-dark rounded-full h-3 p-[2px] border border-white/10"><div class="bg-gradient-to-r from-primary to-secondary h-full rounded-full" style="width: 92%"></div></div>
+                        </div>
+                         <div>
+                            <div class="flex justify-between text-gray-300 mb-2"><span>Game Sense</span> <span class="text-secondary">90%</span></div>
+                            <div class="w-full bg-dark rounded-full h-3 p-[2px] border border-white/10"><div class="bg-gradient-to-r from-secondary to-primary h-full rounded-full" style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-dark relative z-10">
+        <div class="max-w-3xl mx-auto px-4 text-center reveal">
+            <h2 class="text-4xl font-black text-white mb-8 uppercase tracking-wider">Let's <span class="text-primary mega-glow" style="font-size: inherit;">Collab</span></h2>
+            <p class="text-gray-300 mb-10 text-xl font-medium">
+                Ready to create something insane? Reach out.
+            </p>
+            
+            <a href="mailto:pulkitk069@gmail.com" class="relative inline-flex group items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-dark rounded-full hover:bg-dark/50 border-2 border-primary/50 hover:border-secondary hover:shadow-[0_0_30px_rgba(14,165,233,0.5)]">
+                <span class="absolute inset-0 w-full h-full -mt-1 rounded-full opacity-30 bg-gradient-to-r from-primary via-secondary to-primary blur-lg group-hover:opacity-70 transition-opacity duration-300 animate-pulse-slow"></span>
+                <span class="relative flex items-center gap-3 text-lg tracking-wider uppercase"> 
+                    <i class="fas fa-envelope text-secondary"></i> pulkitk069@gmail.com
+                </span>
+            </a>
+
+            <footer class="mt-16 text-gray-500 text-sm font-bold uppercase tracking-widest">
+                <p>© 2025 Pulkit. Built for the future.</p>
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        // 1. Typing Animation Script
+        const words = ["Video Editor.", "Gamer.", "Creative Student."];
+        let i = 0;
+        let timer;
+
+        function typeWriter() {
+            const text = words[i];
+            const element = document.getElementById('typewriter');
+            let currentText = element.innerText;
+            if (currentText.length < text.length) {
+                element.innerText = text.substring(0, currentText.length + 1);
+                timer = setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(eraseText, 2000);
+            }
+        }
+        function eraseText() {
+            const element = document.getElementById('typewriter');
+            let currentText = element.innerText;
+            if (currentText.length > 0) {
+                element.innerText = currentText.substring(0, currentText.length - 1);
+                timer = setTimeout(eraseText, 50);
+            } else {
+                i = (i + 1) % words.length;
+                setTimeout(typeWriter, 500);
+            }
+        }
+
+        // 2. Scroll Reveal Animation Script (Text upar aayega scroll karne par)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+
+        // 3. Parallax Effect Script for Goku (Fake 3D movement)
+        document.addEventListener("mousemove", parallax);
+        function parallax(e) {
+            document.querySelectorAll(".layer").forEach(layer => {
+                const speed = layer.getAttribute('data-speed');
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                // Hum sirf thoda sa move karenge taaki heavy na ho
+                layer.style.transform = `translateX(${x}px) translateY(${y}px) rotate(${x/2}deg)`;
+            });
+        }
+
+        // Initialize functions
+        window.onload = function() {
+            typeWriter();
+            reveal(); // Check on load
+        };
+        window.addEventListener("scroll", reveal);
+
+    </script>
+</body>
+</html>
