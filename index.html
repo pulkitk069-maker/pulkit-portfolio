@@ -4,27 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulkit | The Portfolio</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { cyber: ['Orbitron', 'sans-serif'], body: ['Outfit', 'sans-serif'] },
+                    colors: { neon: '#b026ff', cyan: '#00f3ff', gold: '#ffd700', dark: '#050505' },
+                    animation: { 'float': 'float 6s ease-in-out infinite' },
+                    keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } } }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="logo">PULKIT<span class="dot">.</span></div>
-        <div class="social-nav">
-            <a href="#contact" class="hire-btn">CONNECT</a>
-        </div>
+        <a href="#contact" class="hire-btn">HIRE ME</a>
     </nav>
 
     <section id="home" class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <div class="text-area" data-aos="fade-right">
-                    <div class="badge">PORTFOLIO V.14</div>
-                    <h2 class="hello-text">Hello, I'm <span class="name-highlight">Pulkit</span></h2>
+                <div class="text-area">
+                    <div class="badge">PORTFOLIO V.15</div>
+                    <h2 class="hello-text">Hello, I'm <span class="hero-name-small">Pulkit</span></h2>
                     
                     <h1 class="typing-wrapper">
                         I am a <span class="type-text"></span><span class="cursor">|</span>
@@ -32,16 +46,16 @@
 
                     <p class="quote">
                         "I bridge the gap between <strong>Logic</strong> and <strong>Creativity</strong>. 
-                        Whether it's training AI models, clutching a 1v4 in BGMI, or crafting cinematic visuals — I strive for <span class="text-neon">Perfection</span>."
+                        Whether it's training AI models, clutching a 1v4 in BGMI, or crafting cinematic visuals."
                     </p>
 
                     <div class="btn-group">
-                        <a href="#gaming" class="btn btn-gold">Gaming Profile</a>
-                        <a href="#editing" class="btn btn-neon">Visual Works</a>
+                        <a href="#gaming" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming</a>
+                        <a href="#editing" class="btn btn-neon"><i class="fas fa-film"></i> Editing</a>
                     </div>
                 </div>
 
-                <div class="image-area" data-aos="zoom-in">
+                <div class="image-area">
                     <div class="glow-circle"></div>
                     <img src="https://i.postimg.cc/W1RPTtvG/e2bd0af9b0bf0c3c49e6a4dd841071fe.jpg" alt="Pulkit Profile" class="profile-img">
                 </div>
@@ -50,154 +64,82 @@
     </section>
 
     <section id="about" class="section-box">
-        <h2 class="section-heading" data-aos="fade-up">ACADEMIC <span class="text-cyan">ARC</span></h2>
-        
-        <div class="glass-card full-width" data-aos="fade-up">
-            <div class="content-split">
-                <div class="text-part">
-                    <h3><i class="fas fa-brain text-cyan"></i> The Developer's Mindset</h3>
-                    <p>
-                        I am currently pursuing my <strong>BCA (Bachelor of Computer Applications)</strong> at <strong>DDU Gorakhpur University</strong>. 
-                        Unlike traditional students, my focus isn't just on syllabus but on real-world application.
-                    </p>
-                    <p class="mt-4">
-                        I am specializing in <strong>Machine Learning & Data Science (MLDS)</strong> because I believe AI is the future. 
-                        Currently mastering the fundamentals of <strong>C Programming</strong> to understand memory management, while exploring <strong>Python</strong> for AI development.
-                    </p>
-                </div>
-                
-                <div class="stats-part">
-                    <div class="skill-item">
-                        <div class="flex justify-between"><span>Data Structures</span><span>Learning</span></div>
-                        <div class="bar"><div class="fill cyan" style="width:40%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="flex justify-between"><span>Python & AI</span><span>Intermediate</span></div>
-                        <div class="bar"><div class="fill cyan" style="width:60%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="flex justify-between"><span>Web Tech</span><span>Exploring</span></div>
-                        <div class="bar"><div class="fill cyan" style="width:50%"></div></div>
-                    </div>
-                </div>
+        <h2 class="section-heading">ACADEMIC <span class="text-cyan">ARC</span></h2>
+        <div class="glass-card">
+            <h3 class="text-xl font-bold text-white mb-2"><i class="fas fa-university text-cyan"></i> DDU University</h3>
+            <p class="text-gray-400 mb-4">BCA (Machine Learning & Data Science)</p>
+            <hr class="border-gray-700 my-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="skill-badge">Python Basics</div>
+                <div class="skill-badge">C Programming</div>
+                <div class="skill-badge">AI Tools</div>
+                <div class="skill-badge">HTML/CSS</div>
             </div>
         </div>
     </section>
 
     <section id="gaming" class="section-box">
-        <h2 class="section-heading" data-aos="fade-up">ESPORTS <span class="text-gold">CAREER</span></h2>
-        
-        <div class="gaming-container glass-card" data-aos="zoom-in">
-            <div class="gamer-header">
+        <h2 class="section-heading">BGMI <span class="text-gold">STATS</span></h2>
+        <div class="glass-card" style="border-color: #ffd700;">
+            <div class="gaming-header">
                 <img src="https://i.postimg.cc/gkdWbVJm/IMG-20251120-WA0024.jpg" class="gamer-dp">
-                <div class="gamer-text">
-                    <h3>「PULKIT'」</h3>
-                    <p class="uid">UID: <span class="text-gold">55572783812</span></p>
-                    <div class="tags">
-                        <span>IGL</span><span>SNIPER</span><span>RUSHER</span>
-                    </div>
+                <div>
+                    <h3 class="text-2xl font-bold font-cyber text-white">「PULKIT'」</h3>
+                    <p class="text-gold font-mono">UID: 55572783812</p>
                 </div>
             </div>
-
-            <hr class="divider">
-
-            <div class="game-desc text-center my-6">
-                <p>
-                    "In the chaos of the final circle, calm is a superpower." <br>
-                    I am a competitive <strong>BGMI Athlete</strong> known for high-IQ plays and aggressive assaulting. 
-                    Despite playing on a <strong>POCO M4 Pro (40FPS)</strong>, I consistently maintain a <strong>5+ KD Ratio</strong> in Ace Dominator lobbies.
-                </p>
-            </div>
-
-            <div class="stats-row">
-                <div class="stat-box">
-                    <h4>Ace Dominator</h4>
-                    <span>Peak Tier</span>
-                </div>
-                <div class="stat-box">
-                    <h4>5.20</h4>
-                    <span>F/D Ratio</span>
-                </div>
-                <div class="stat-box">
-                    <h4>4 Finger</h4>
-                    <span>Claw + Gyro</span>
-                </div>
+            <div class="stats-grid">
+                <div class="stat-item"><h4>Ace Dominator</h4><span>Rank</span></div>
+                <div class="stat-item"><h4>5.20</h4><span>F/D Ratio</span></div>
+                <div class="stat-item"><h4>Assaulter</h4><span>Role</span></div>
+                <div class="stat-item"><h4>POCO M4</h4><span>Device</span></div>
             </div>
         </div>
     </section>
 
     <section id="editing" class="section-box">
-        <h2 class="section-heading" data-aos="fade-up">VISUAL <span class="text-neon">ALCHEMIST</span></h2>
-        
-        <div class="glass-card" data-aos="fade-up">
-            <p class="text-center text-gray-300 mb-8 max-w-2xl mx-auto">
-                Video editing is more than just cuts; it's about <strong>Rhythm, Pacing, and Emotion</strong>. 
-                Using tools like <strong>CapCut</strong> and <strong>Alight Motion</strong>, I transform raw gameplay and footage into cinematic masterpieces.
-            </p>
-
-            <div class="reels-container">
-                <div class="reel-wrapper">
-                    <span class="reel-tag">Cinematic Edit</span>
+        <h2 class="section-heading">VISUAL <span class="text-neon">FX</span></h2>
+        <p class="text-center text-gray-400 mb-8">Edited on CapCut & Alight Motion</p>
+        <div class="glass-card">
+            <div class="video-container">
+                <div class="reel-box">
                     <iframe src="https://www.instagram.com/reel/C6TfZSwyAVc/embed" scrolling="no"></iframe>
                 </div>
-                <div class="reel-wrapper">
-                    <span class="reel-tag">Beat Sync</span>
+                <div class="reel-box">
                     <iframe src="https://www.instagram.com/reel/CvjadphBmWt/embed" scrolling="no"></iframe>
                 </div>
             </div>
-
             <div class="text-center mt-8">
-                <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="view-more-btn">View Editing Archive →</a>
+                <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="btn btn-neon">View Archive</a>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section-box pb-20">
-        <h2 class="section-heading" data-aos="zoom-in">CONNECT <span class="text-white">HUB</span></h2>
-        <p class="text-center text-gray-400 mb-10">Reach out for Collabs, Projects, or Gaming.</p>
-        
+        <h2 class="section-heading">CONNECT <span class="text-white">NOW</span></h2>
         <div class="bento-grid">
-            <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta">
                 <div class="icon-box"><i class="fab fa-instagram"></i></div>
-                <div class="bento-text">
-                    <h4>Instagram</h4>
-                    <p>@_pulkit1_</p>
-                </div>
-                <i class="fas fa-arrow-right arrow"></i>
+                <div><h4>Instagram</h4><p>@_pulkit1_</p></div>
             </a>
-            
-            <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt">
                 <div class="icon-box"><i class="fab fa-youtube"></i></div>
-                <div class="bento-text">
-                    <h4>YouTube</h4>
-                    <p>Subscribe</p>
-                </div>
+                <div><h4>YouTube</h4><p>Subscribe</p></div>
             </a>
-
-            <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg" data-aos="fade-up" data-aos-delay="300">
+            <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg">
                 <div class="icon-box"><i class="fab fa-telegram"></i></div>
-                <div class="bento-text">
-                    <h4>Telegram</h4>
-                    <p>Chat Now</p>
-                </div>
+                <div><h4>Telegram</h4><p>Chat Now</p></div>
             </a>
-
-            <a href="mailto:pulkitk069@gmail.com" class="bento-card mail" data-aos="fade-up" data-aos-delay="400">
+            <a href="mailto:pulkitk069@gmail.com" class="bento-card mail">
                 <div class="icon-box"><i class="fas fa-envelope"></i></div>
-                <div class="bento-text">
-                    <h4>Email</h4>
-                    <p>Contact Me</p>
-                </div>
+                <div><h4>Email</h4><p>Contact</p></div>
             </a>
         </div>
-        
-        <footer class="mt-16 text-center text-gray-600 text-sm font-mono">
-            SYSTEM STATUS: ONLINE <br>
-            © 2025 PULKIT PORTFOLIO
+        <footer class="text-center mt-16 text-gray-600 text-sm">
+            © 2025 Pulkit Portfolio.
         </footer>
     </section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
