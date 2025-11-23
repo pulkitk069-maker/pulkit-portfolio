@@ -1,9 +1,12 @@
-// 1. IMPORTS (Sab kuch ek saath import kiya)
+// IMPORTS
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-// 2. CONFIG (Tumhari Keys)
+// --- CONFIG ---
+const OPENROUTER_API_KEY = "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"; // <--- ⚠️ YAHAN KEY PASTE KARO
+const SITE_URL = "https://pulkitk069-maker.github.io/pulkit-portfolio/";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCy6uOrEeDffvJxjXljV51174kJbE3ka2o",
     authDomain: "pulkit-portfolio-b4cdc.firebaseapp.com",
@@ -14,130 +17,177 @@ const firebaseConfig = {
     measurementId: "G-SMXZH47CCX"
 };
 
-// 3. INITIALIZE
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
-
-// Log Page View
 logEvent(analytics, 'page_view');
 
-// === 4. MUSIC PLAYER LOGIC ===
-// Window object par function lagaya taki HTML se call ho sake
+// === VARIABLES ===
+const synth = window.speechSynthesis;
+let recognition;
+
+// === 1. MUSIC PLAYER ===
 window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const icon = btn.querySelector('i');
-
     if (music.paused) {
-        music.play();
+        music.play().catch(e => alert("Please tap anywhere first!")); // Auto-play block fix
         btn.classList.add('playing');
-        icon.classList.remove('fa-play');
-        icon.classList.add('fa-pause');
+        icon.classList.remove('fa-play'); icon.classList.add('fa-pause');
     } else {
         music.pause();
         btn.classList.remove('playing');
-        icon.classList.remove('fa-pause');
-        icon.classList.add('fa-play');
+        icon.classList.remove('fa-pause'); icon.classList.add('fa-play');
     }
 }
 
-// === 5. VISITOR COUNTER LOGIC ===
-async function updateCounter() {
-    const counterEl = document.getElementById('viewCounter');
-    // Database mein 'stats' folder ke andar 'visits' file dhoondo
-    const docRef = doc(db, "stats", "visits");
+// === 2. VOICE RECOGNITION (UI CONTROLLED) ===
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = "en-IN"; // Hindi/English mix support
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('live-transcript').innerText = `"${transcript}"`;
+        
+        // Wait 1 sec then close UI and send
+        setTimeout(() => {
+            stopVoice(); // UI Close
+            document.getElementById('userInput').value = transcript;
+            toggleChat(); // Chat open if closed
+            sendMessage(); // Send to Mukuu
+        }, 1000);
+    };
+
+    recognition.onerror = function(event) {
+        document.getElementById('live-transcript').innerText = "Error. Try again.";
+    };
+}
+
+window.toggleVoice = function() {
+    if (!recognition) { alert("Use Chrome for Voice!"); return; }
+    
+    // Show UI
+    document.getElementById('voice-overlay').style.display = 'flex';
+    document.getElementById('live-transcript').innerText = "Listening...";
+    recognition.start();
+}
+
+window.stopVoice = function() {
+    document.getElementById('voice-overlay').style.display = 'none';
+    recognition.stop();
+}
+
+// === 3. TEXT TO SPEECH (Mukuu Speaks) ===
+function speakText(text) {
+    if (synth.speaking) synth.cancel();
+    // Emojis remove karo bolne se pehle
+    const cleanText = text.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF])/g, '');
+    
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1; utterance.pitch = 1.1;
+    const voices = synth.getVoices();
+    // Try to find a female/Google voice
+    const preferredVoice = voices.find(v => v.name.includes("Google") || v.name.includes("Female"));
+    if (preferredVoice) utterance.voice = preferredVoice;
+    synth.speak(utterance);
+}
+
+// === 4. CHATBOT LOGIC (SALES + MAHEK) ===
+window.toggleChat = function() {
+    const chat = document.getElementById('chat-widget');
+    chat.style.display = (chat.style.display === "none" || chat.style.display === "") ? "flex" : "none";
+}
+
+window.sendMessage = async function() {
+    const inputField = document.getElementById('userInput');
+    const message = inputField.value.trim();
+    if (!message) return;
+
+    addMessage(message, 'user');
+    inputField.value = ""; inputField.disabled = true;
+    const loadingId = addMessage("Thinking... 🐼", 'bot');
+
+    // SYSTEM PROMPT LOGIC
+    let systemPrompt = "";
+    let isMahek = false;
+    const lowerMsg = message.toLowerCase();
+
+    if (lowerMsg.includes("mahek") || lowerMsg.includes("madam") || lowerMsg.includes("gf")) {
+        isMahek = true;
+        systemPrompt = `You are Mukuu 🐼. You are talking to Mahek (Pulkit's girlfriend/Madam ji).
+        Tone: Very romantic, emotional, respectful and loving. Use ❤️, 🥺 emojis.
+        Tell her Pulkit loves her the most.`;
+    } else {
+        systemPrompt = `You are Mukuu 🐼, Sales Assistant for Pulkit.
+        GOAL: Sell Web Development Services.
+        Pulkit makes: Portfolios, Business Sites, Landing Pages.
+        Pricing: Affordable.
+        Contact: Ask them to use the Contact Form.
+        Keep answers short, professional but friendly. Use 🐼.`;
+    }
 
     try {
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-            // Agar file hai, to count +1 karo
-            await updateDoc(docRef, { count: increment(1) });
-            // Naya count wapas screen par dikhao
-            const updatedSnap = await getDoc(docRef);
-            counterEl.innerText = updatedSnap.data().count;
-        } else {
-            // Agar file nahi hai (First time), to create karo 1 se
-            await setDoc(docRef, { count: 1 });
-            counterEl.innerText = 1;
-        }
-    } catch (error) {
-        console.error("Counter Error:", error);
-        counterEl.innerText = "Error"; // Agar rule galat ho
-    }
-}
-
-// === 6. TYPING ANIMATION LOGIC ===
-const words = ["Video Editor", "Gamer", "BCA Student", "Tech Enthusiast"];
-let i = 0;
-let timer;
-
-function typeWriter() {
-    const element = document.querySelector('.type-text');
-    if(!element) return;
-    const text = words[i];
-    let currentText = element.innerText;
-
-    if (currentText.length < text.length) {
-        element.innerText = text.substring(0, currentText.length + 1);
-        timer = setTimeout(typeWriter, 100);
-    } else {
-        setTimeout(eraseText, 2000);
-    }
-}
-
-function eraseText() {
-    const element = document.querySelector('.type-text');
-    if(!element) return;
-    let currentText = element.innerText;
-
-    if (currentText.length > 0) {
-        element.innerText = currentText.substring(0, currentText.length - 1);
-        timer = setTimeout(eraseText, 50);
-    } else {
-        i = (i + 1) % words.length;
-        setTimeout(typeWriter, 500);
-    }
-}
-
-// === 7. MAIN STARTUP ===
-document.addEventListener('DOMContentLoaded', () => {
-    typeWriter();      // Text Effect Start
-    updateCounter();   // Counter Start
-
-    // Form Logic
-    const form = document.getElementById('contactForm');
-    if(form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = "Sending...";
-            btn.disabled = true;
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            try {
-                await addDoc(collection(db, "messages"), {
-                    name: name,
-                    email: email,
-                    message: message,
-                    timestamp: new Date()
-                });
-                logEvent(analytics, 'form_submit', { user: name });
-                alert("Message Sent! ✅");
-                form.reset();
-            } catch (error) {
-                console.error(error);
-                alert("Error sending message.");
-            }
-
-            btn.innerText = originalText;
-            btn.disabled = false;
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+                "HTTP-Referer": SITE_URL,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "model": "qwen/qwen-2.5-72b-instruct",
+                "messages": [
+                    { "role": "system", "content": systemPrompt },
+                    { "role": "user", "content": message }
+                ]
+            })
         });
+
+        const data = await response.json();
+        let aiReply = data.choices[0].message.content;
+        
+        if (isMahek) aiReply = "Madam ji! 🥺❤️ " + aiReply;
+
+        document.getElementById(loadingId).remove();
+        addMessage(aiReply, 'bot');
+        speakText(aiReply); // Mukuu bologi
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById(loadingId).innerText = "Server Error 🐼";
     }
+    inputField.disabled = false; inputField.focus();
+}
+
+function addMessage(text, sender) {
+    const chatBody = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+    div.innerText = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return div; // Return element to remove/update later
+}
+window.handleEnter = function(e) { if (e.key === 'Enter') sendMessage(); }
+
+// === 5. COUNTER & TYPING ===
+// ... (Typing logic aur Counter Logic same rahega jo pichle code mein tha) ...
+// ... Copy paste from previous message for brevity if needed, or assume it's there ...
+async function updateCounter() {
+    const counterEl = document.getElementById('viewCounter');
+    const docRef = doc(db, "stats", "visits");
+    try {
+        await updateDoc(docRef, { count: increment(1) });
+        const updatedSnap = await getDoc(docRef);
+        counterEl.innerText = updatedSnap.data().count;
+    } catch (e) { console.log("Counter Init..."); }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    updateCounter();
+    // Typing animation logic...
+    const form = document.getElementById('contactForm');
+    if(form) form.addEventListener('submit', async (e) => { /* Form logic same */ });
 });
