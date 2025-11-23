@@ -4,57 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulkit | The Creator</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-
+    
     <style>
-        /* --- CSS STYLES START --- */
-        
-        /* GLOBAL */
+        /* === CSS STYLES (YAHIN ADD KAR DIYE) === */
         body { background-color: #000; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; margin: 0; padding: 0; }
         .input-style { background: rgba(255,255,255,0.1); border: 1px solid #333; padding: 12px; color: white; border-radius: 5px; outline: none; width: 100%; }
-
-        /* NAVBAR & HERO */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 100; backdrop-filter: blur(10px); background: rgba(0,0,0,0.5); }
-        .logo { font-family: 'Orbitron'; font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
-        .dot { color: #00f3ff; }
-        .hire-btn { border: 1px solid #00f3ff; color: #00f3ff; padding: 8px 20px; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
-        .hire-btn:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
-
-        .hero-section { height: 100vh; display: flex; align-items: center; padding-top: 60px; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        .hero-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-        
-        .text-area { flex: 1; min-width: 300px; }
-        .badge { display: inline-block; background: #222; padding: 5px 10px; font-size: 0.8rem; color: #aaa; margin-bottom: 15px; border-left: 3px solid #00f3ff; }
-        .hero-name { font-family: 'Orbitron'; font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 10px; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        
-        .typing-wrapper { font-size: 1.5rem; margin-bottom: 20px; color: #b026ff; }
-        .cursor { display: inline-block; width: 2px; background-color: #fff; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .quote { color: #888; margin-bottom: 30px; font-size: 1rem; max-width: 500px; line-height: 1.6; border-left: 2px solid #b026ff; padding-left: 15px; }
-        .text-neon { color: #00f3ff; text-shadow: 0 0 10px #00f3ff; }
-
-        .btn-group { display: flex; gap: 15px; }
-        .btn { padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .btn-gold { background: linear-gradient(45deg, #ffd700, #ffaa00); color: black; }
-        .btn-neon { background: transparent; border: 1px solid #00f3ff; color: #00f3ff; }
-        .btn-neon:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
-
-        .image-area { flex: 1; display: flex; justify-content: center; position: relative; }
-        .profile-img { width: 300px; height: 300px; object-fit: cover; border-radius: 20px; filter: grayscale(100%); transition: 0.5s; z-index: 2; border: 2px solid #333; }
-        .profile-img:hover { filter: grayscale(0%); transform: scale(1.02); border-color: #00f3ff; }
-        .glow-circle { position: absolute; width: 320px; height: 320px; background: radial-gradient(circle, rgba(176,38,255,0.4) 0%, rgba(0,0,0,0) 70%); z-index: 1; top: -10px; }
-
-        /* SECTIONS */
-        .section-box { padding: 80px 10%; }
-        .section-heading { font-family: 'Orbitron'; font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
-        .text-cyan { color: #00f3ff; }
-        
-        .glass-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); max-width: 600px; margin: 0 auto; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
 
         /* ANIMATIONS */
         @keyframes float-alive { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
@@ -69,7 +26,7 @@
         .playing { animation: spin 4s linear infinite !important; border-color: #00f3ff; color: #00f3ff; box-shadow: 0 0 15px #00f3ff; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* VOICE OVERLAY */
+        /* VOICE OVERLAY (Gemini Style) */
         .voice-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
@@ -91,7 +48,7 @@
         .close-voice-btn { margin-top: 30px; background: rgba(255,255,255,0.1); border: 1px solid white; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
 
         /* CHATBOT */
-        .chat-float-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #b026ff; color: white; border-radius: 50%; border: none; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 20px rgba(176, 38, 255, 0.6); z-index: 1000; transition: 0.3s; animation: bounce 2s infinite; }
+        .chat-float-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #b026ff; color: white; border-radius: 50%; border: none; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 20px rgba(176, 38, 255, 0.6); z-index: 1000; transition: 0.3s; animation: bounce 2s infinite; display: flex; align-items: center; justify-content: center;}
         .chat-container { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: rgba(15, 15, 20, 0.95); border: 1px solid #b026ff; border-radius: 20px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 0 30px rgba(0,0,0,0.8); }
         .chat-header { background: #b026ff; padding: 15px; color: white; font-weight: bold; font-family: 'Orbitron'; display: flex; justify-content: space-between; align-items: center; }
         .online-dot { width: 10px; height: 10px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
@@ -101,13 +58,47 @@
         .user-message { background: #b026ff; color: white; align-self: flex-end; border-bottom-right-radius: 0; }
         .chat-footer { padding: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); }
         .chat-footer input { flex: 1; background: rgba(0,0,0,0.5); border: 1px solid #333; padding: 10px; border-radius: 50px; color: white; outline: none; }
-        .send-btn { background: #00f3ff; border: none; color: black; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .send-btn { background: #00f3ff; border: none; color: black; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;}
         .icon-btn { background: rgba(255,255,255,0.1); border: 1px solid #b026ff; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-        @media(max-width: 480px) { .chat-container { width: 90%; right: 5%; bottom: 100px; } .hero-name { font-size: 2.5rem; } }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        /* General Sections */
+        .navbar { display: flex; justify-content: space-between; padding: 15px 5%; position: fixed; width: 100%; top: 0; z-index: 50; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-family: 'Orbitron'; font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+        .dot { color: #b026ff; }
+        .hire-btn { border: 1px solid #00f3ff; color: #00f3ff; padding: 8px 25px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; transition: 0.3s; text-decoration: none; }
+        .hire-btn:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
 
-        /* --- CSS STYLES END --- */
+        .hero-section { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 50px; }
+        .container { width: 90%; max-width: 1200px; margin: auto; }
+        .hero-content { display: flex; flex-direction: column-reverse; align-items: center; gap: 50px; }
+        @media(min-width: 768px) { .hero-content { flex-direction: row; justify-content: space-between; } }
+        
+        .text-area { text-align: center; width: 100%; z-index: 10; }
+        @media(min-width: 768px) { .text-area { text-align: left; width: 55%; } }
+        .badge { border: 1px solid #b026ff; color: #b026ff; display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 20px; background: rgba(176, 38, 255, 0.1); }
+        .hero-name { font-family: 'Orbitron'; font-weight: 900; color: white; text-shadow: 0 0 25px #b026ff; font-size: 3.5rem; line-height: 1; margin-bottom: 15px; letter-spacing: 2px; }
+        @media(min-width: 768px) { .hero-name { font-size: 5rem; } }
+        .typing-wrapper { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: bold; margin-bottom: 25px; color: #00f3ff; text-shadow: 0 0 10px #00f3ff; }
+        .cursor { color: #b026ff; animation: blink 0.8s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        .quote { color: #ddd; font-style: italic; margin-bottom: 35px; line-height: 1.8; border-left: 4px solid #b026ff; padding-left: 20px; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 0 10px 10px 0; }
+        .btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+        @media(min-width: 768px) { .btn-group { justify-content: flex-start; } }
+        .btn { padding: 14px 35px; border-radius: 50px; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; gap: 10px; transition: 0.3s; backdrop-filter: blur(5px); text-decoration: none; cursor: pointer; }
+        .btn-gold:hover { border-color: #ffd700; color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); transform: scale(1.05); }
+        .btn-neon:hover { border-color: #b026ff; color: #b026ff; box-shadow: 0 0 20px rgba(176, 38, 255, 0.6); transform: scale(1.05); }
+
+        .image-area { position: relative; width: 280px; height: 280px; }
+        @media(min-width: 768px) { .image-area { width: 400px; height: 400px; } }
+        .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 5px solid rgba(255,255,255,0.2); position: relative; z-index: 2; box-shadow: 0 0 50px rgba(0, 243, 255, 0.3); }
+        .glow-circle { position: absolute; inset: -20px; background: #00f3ff; filter: blur(60px); opacity: 0.5; border-radius: 50%; z-index: 1; animation: pulse 3s infinite; }
+
+        .section-box { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .section-heading { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        .glass-card { background: rgba(15, 15, 20, 0.85); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 25px; backdrop-filter: blur(15px); max-width: 1000px; margin: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        
+        /* Mobile Responsive for Chat */
+        @media(max-width: 480px) { .chat-container { width: 90%; right: 5%; bottom: 100px; } }
     </style>
 </head>
 <body>
@@ -146,8 +137,8 @@
                         "I blend <strong>Code</strong> with <strong>Creativity</strong>. Whether it's mastering AI Algorithms, dominating in BGMI, or crafting cinematic visuals — I play to <span class="text-neon">Win</span>."
                     </div>
                     <div class="btn-group">
-                        <a href="#" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming Profile</a>
-                        <a href="#" class="btn btn-neon"><i class="fas fa-film"></i> Visual Work</a>
+                        <a href="#gaming" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming Profile</a>
+                        <a href="#editing" class="btn btn-neon"><i class="fas fa-film"></i> Visual Work</a>
                     </div>
                 </div>
                 <div class="image-area alive-slow">
@@ -163,7 +154,7 @@
         <div class="glass-card alive">
             <div class="study-info" style="text-align: center;">
                 <h3 style="font-size: 2rem; color: white;"><i class="fas fa-university text-cyan"></i> DDU University</h3>
-                <p style="color: #ccc; margin-top:10px;">BCA (ML & Data Science) - 1st Semester</p>
+                <p style="color: #ccc;">BCA (ML & Data Science) - 1st Semester</p>
             </div>
         </div>
     </section>
@@ -182,7 +173,7 @@
         <footer style="text-align: center; margin-top: 60px; color: #666; font-size: 0.8rem;">
             <p>SYSTEM STATUS: ONLINE</p>
             <p style="margin-top: 10px; color: #00f3ff; font-weight: bold;">
-                👀 SYSTEM VISITS: <span id="viewCounter">Loading...</span>
+                👀 SYSTEM VISITS: <span id="viewCounter">...</span>
             </p>
             <p>© 2025 PULKIT PORTFOLIO</p>
         </footer>
@@ -216,15 +207,15 @@
     </button>
 
     <script type="module">
-        // IMPORTS (Using CDN for single file compatibility)
+        // IMPORTS
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
         import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
         // --- CONFIG ---
-        // ⚠️ IMPORTANT: Replace this below with your ACTUAL OpenRouter Key
-        const OPENROUTER_API_KEY = "PASTE_YOUR_OPENROUTER_KEY_HERE"; 
-        const SITE_URL = window.location.href;
+        // ⚠️⚠️⚠️ APNI OPENROUTER KEY YAHAN PASTE KARNA ⚠️⚠️⚠️
+        const OPENROUTER_API_KEY = "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"; 
+        const SITE_URL = "https://pulkitk069-maker.github.io/pulkit-portfolio/";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCy6uOrEeDffvJxjXljV51174kJbE3ka2o",
@@ -236,7 +227,6 @@
             measurementId: "G-SMXZH47CCX"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const analytics = getAnalytics(app);
@@ -246,13 +236,13 @@
         const synth = window.speechSynthesis;
         let recognition;
 
-        // === 1. MUSIC PLAYER (Attached to window for HTML access) ===
+        // === 1. MUSIC PLAYER ===
         window.toggleMusic = function() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicBtn');
             const icon = btn.querySelector('i');
             if (music.paused) {
-                music.play().catch(e => alert("Please interact with document first (click anywhere)!")); 
+                music.play().catch(e => alert("Please tap anywhere first!"));
                 btn.classList.add('playing');
                 icon.classList.remove('fa-play'); icon.classList.add('fa-pause');
             } else {
@@ -266,19 +256,20 @@
         if ('webkitSpeechRecognition' in window) {
             recognition = new webkitSpeechRecognition();
             recognition.continuous = false;
-            recognition.lang = "en-IN"; 
+            recognition.lang = "en-IN";
 
             recognition.onresult = function(event) {
                 const transcript = event.results[0][0].transcript;
                 document.getElementById('live-transcript').innerText = `"${transcript}"`;
                 
                 setTimeout(() => {
-                    window.stopVoice(); 
+                    stopVoice();
                     document.getElementById('userInput').value = transcript;
-                    window.toggleChat();
-                    window.sendMessage(); 
+                    toggleChat();
+                    sendMessage();
                 }, 1000);
             };
+
             recognition.onerror = function(event) {
                 document.getElementById('live-transcript').innerText = "Error. Try again.";
             };
@@ -336,6 +327,7 @@
                 systemPrompt = `You are Mukuu 🐼, Sales Assistant for Pulkit.
                 GOAL: Sell Web Development Services.
                 Pulkit makes: Portfolios, Business Sites, Landing Pages.
+                Pricing: Affordable.
                 Contact: Ask them to use the Contact Form.
                 Keep answers short, professional but friendly. Use 🐼.`;
             }
@@ -358,17 +350,16 @@
                 });
 
                 const data = await response.json();
-                let aiReply = data.choices && data.choices[0] ? data.choices[0].message.content : "API Key Invalid or Limit Reached.";
-                
+                let aiReply = data.choices[0].message.content;
                 if (isMahek) aiReply = "Madam ji! 🥺❤️ " + aiReply;
 
                 document.getElementById(loadingId).remove();
                 addMessage(aiReply, 'bot');
-                speakText(aiReply); 
+                speakText(aiReply);
 
             } catch (error) {
                 console.error(error);
-                document.getElementById(loadingId).innerText = "Server Error 🐼 (Check Console)";
+                document.getElementById(loadingId).innerText = "Server Error 🐼";
             }
             inputField.disabled = false; inputField.focus();
         }
@@ -380,73 +371,65 @@
             div.innerText = text;
             chatBody.appendChild(div);
             chatBody.scrollTop = chatBody.scrollHeight;
-            return div.id = "msg-" + Date.now(); 
+            return div;
+        }
+        window.handleEnter = function(e) { if (e.key === 'Enter') sendMessage(); }
+
+        // === 5. STARTUP ===
+        async function updateCounter() {
+            const counterEl = document.getElementById('viewCounter');
+            const docRef = doc(db, "stats", "visits");
+            try {
+                await updateDoc(docRef, { count: increment(1) });
+                const updatedSnap = await getDoc(docRef);
+                counterEl.innerText = updatedSnap.data().count;
+            } catch (e) { console.log("Counter Init..."); }
+        }
+        
+        // Typing Logic
+        const words = ["Video Editor", "Gamer", "BCA Student", "Tech Enthusiast"];
+        let i = 0;
+        function typeWriter() {
+            const element = document.querySelector('.type-text');
+            if(!element) return;
+            const text = words[i];
+            let currentText = element.innerText;
+            if (currentText.length < text.length) {
+                element.innerText = text.substring(0, currentText.length + 1);
+                setTimeout(typeWriter, 100);
+            } else { setTimeout(eraseText, 2000); }
+        }
+        function eraseText() {
+            const element = document.querySelector('.type-text');
+            if(!element) return;
+            let currentText = element.innerText;
+            if (currentText.length > 0) {
+                element.innerText = currentText.substring(0, currentText.length - 1);
+                setTimeout(eraseText, 50);
+            } else { i = (i + 1) % words.length; setTimeout(typeWriter, 500); }
         }
 
-        window.handleEnter = function(e) { if (e.key === 'Enter') window.sendMessage(); }
-
-        // === 5. TYPING EFFECT (FIXED) ===
-        const typeTextSpan = document.querySelector(".type-text");
-        const textArray = ["BCA Student", "BGMI Ace Dominator", "Video Editor", "Web Developer"];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function type() {
-            const currentText = textArray[textIndex];
-            if(isDeleting){
-                typeTextSpan.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typeTextSpan.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if(!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                setTimeout(type, 2000); 
-            } else if(isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % textArray.length;
-                setTimeout(type, 500);
-            } else {
-                setTimeout(type, isDeleting ? 100 : 200);
-            }
-        }
-
-        // === 6. INIT (Counter & Listeners) ===
         document.addEventListener('DOMContentLoaded', () => {
-            // Start Typing
-            type();
-
-            // Visit Counter Logic
-            async function updateCounter() {
-                const counterEl = document.getElementById('viewCounter');
-                const docRef = doc(db, "stats", "visits");
-                try {
-                    await updateDoc(docRef, { count: increment(1) });
-                    const updatedSnap = await getDoc(docRef);
-                    counterEl.innerText = updatedSnap.data().count;
-                } catch (e) { 
-                    console.log("Creating Counter Doc...", e);
-                    // Create if not exists (fallback)
-                    try { await setDoc(docRef, { count: 1 }); counterEl.innerText = "1"; } catch(ex){}
-                }
-            }
             updateCounter();
-
-            // Form Logic
+            typeWriter();
+            
+            // Re-attach Form Listener
             const form = document.getElementById('contactForm');
-            if(form) {
-                form.addEventListener('submit', async (e) => { 
-                    e.preventDefault();
-                    alert("Message Sent to Pulkit! 🚀");
-                    form.reset();
-                });
-            }
+            if(form) form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button');
+                btn.innerText = "Sending..."; btn.disabled = true;
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                try {
+                    await addDoc(collection(db, "messages"), { name, email, message, timestamp: new Date() });
+                    logEvent(analytics, 'form_submit', { user: name });
+                    alert("Message Sent! ✅"); form.reset();
+                } catch (error) { alert("Error sending message."); }
+                btn.innerText = "SEND DATA 🚀"; btn.disabled = false;
+            });
         });
-
-        console.log("System Online. V17.0 Loaded.");
     </script>
 </body>
 </html>
