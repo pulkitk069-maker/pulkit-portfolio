@@ -11,6 +11,14 @@
 </head>
 <body>
 
+    <audio id="bgMusic" loop>
+        <source src="https://pixabay.com/music/download/music-111005.mp3" type="audio/mp3">
+    </audio>
+
+    <button id="musicBtn" class="music-float" onclick="toggleMusic()">
+        <i class="fas fa-play"></i>
+    </button>
+
     <nav class="navbar">
         <div class="logo">PULKIT<span class="dot">.</span></div>
         <a href="#contact" class="hire-btn">AVAILABLE FOR WORK</a>
@@ -89,7 +97,6 @@
             <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto;">
                 I specialize in creating high-quality visual content. My editing workflow involves complex transitions, color grading, and beat-syncing.
             </p>
-            
             <div class="tools-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
                 <div class="tool-badge" style="border: 1px solid #fff; padding: 10px 20px; border-radius: 10px;">
                     <i class="fas fa-cut"></i> CapCut
@@ -98,7 +105,6 @@
                     <i class="fas fa-layer-group"></i> Alight Motion
                 </div>
             </div>
-
             <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="view-more-btn">
                 Check My Portfolio on Instagram
             </a>
@@ -113,9 +119,15 @@
                 <div class="icon-box"><i class="fab fa-instagram"></i></div>
                 <div class="bento-text"><h4>Instagram</h4><p>@_pulkit1_</p></div>
             </a>
+            
             <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt alive-slow">
                 <div class="icon-box"><i class="fab fa-youtube"></i></div>
                 <div class="bento-text"><h4>YouTube</h4><p>Subscribe</p></div>
+            </a>
+
+            <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg alive">
+                <div class="icon-box"><i class="fab fa-telegram"></i></div>
+                <div class="bento-text"><h4>Telegram</h4><p>Chat Now</p></div>
             </a>
         </div>
 
@@ -130,6 +142,10 @@
         </div>
         
         <footer style="text-align: center; margin-top: 60px; color: #666; font-size: 0.8rem;">
+            <p>SYSTEM STATUS: ONLINE</p>
+            <p style="margin-top: 10px; color: #00f3ff; font-weight: bold; letter-spacing: 1px;">
+                👀 SYSTEM VISITS: <span id="viewCounter">Calculating...</span>
+            </p>
             <p>© 2025 PULKIT PORTFOLIO</p>
         </footer>
     </section>
