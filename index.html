@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* === ORIGINAL DARK NEON CSS (RESTORED) === */
+        /* === CORE STYLES === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #000; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
         
@@ -24,24 +24,20 @@
         .hire-btn { border: 1px solid #00f3ff; color: #00f3ff; padding: 8px 25px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; transition: 0.3s; text-decoration: none; }
         .hire-btn:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero-section { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 50px; }
         .container { width: 90%; max-width: 1200px; margin: auto; }
         .hero-content { display: flex; flex-direction: column-reverse; align-items: center; gap: 50px; }
         @media(min-width: 768px) { .hero-content { flex-direction: row; justify-content: space-between; } }
         .text-area { text-align: center; width: 100%; z-index: 10; }
         @media(min-width: 768px) { .text-area { text-align: left; width: 55%; } }
-        
         .badge { border: 1px solid #b026ff; color: #b026ff; display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 20px; background: rgba(176, 38, 255, 0.1); }
         .hero-name { font-family: 'Orbitron'; font-weight: 900; color: white; text-shadow: 0 0 25px #b026ff; font-size: 3.5rem; line-height: 1; margin-bottom: 15px; letter-spacing: 2px; }
         @media(min-width: 768px) { .hero-name { font-size: 5rem; } }
-        
         .typing-wrapper { font-family: 'Orbitron'; font-size: 1.4rem; font-weight: bold; margin-bottom: 25px; color: #00f3ff; text-shadow: 0 0 10px #00f3ff; }
         .cursor { color: #b026ff; animation: blink 0.8s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-        
         .quote { color: #ddd; font-style: italic; margin-bottom: 35px; line-height: 1.8; border-left: 4px solid #b026ff; padding-left: 20px; font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 0 10px 10px 0; }
-        
         .btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
         @media(min-width: 768px) { .btn-group { justify-content: flex-start; } }
         .btn { padding: 14px 35px; border-radius: 50px; font-weight: bold; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; display: flex; align-items: center; gap: 10px; transition: 0.3s; backdrop-filter: blur(5px); text-decoration: none; cursor: pointer; }
@@ -53,69 +49,64 @@
         .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 5px solid rgba(255,255,255,0.2); position: relative; z-index: 2; box-shadow: 0 0 50px rgba(0, 243, 255, 0.3); }
         .glow-circle { position: absolute; inset: -20px; background: #00f3ff; filter: blur(60px); opacity: 0.5; border-radius: 50%; z-index: 1; animation: pulse 3s infinite; }
 
-        .section-box { padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .section-box { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.1); }
         .section-heading { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
         .glass-card { background: rgba(15, 15, 20, 0.85); border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 25px; backdrop-filter: blur(15px); max-width: 1000px; margin: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
 
-        /* COLORS */
+        /* COLORS & LAYOUTS */
         .text-cyan { color: #00f3ff; } .text-gold { color: #ffd700; } .text-neon { color: #b026ff; }
-
-        /* === ANIMATIONS === */
-        @keyframes float-alive { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        @keyframes breathe { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-        .alive { animation: float-alive 4s ease-in-out infinite; }
-        .alive-slow { animation: float-alive 6s ease-in-out infinite; }
-        .breathe { animation: breathe 5s ease-in-out infinite; }
-
-        /* === SECTIONS STYLING === */
         .study-grid, .stats-grid, .bento-grid { display: grid; gap: 20px; }
         @media(min-width: 768px) { 
             .study-grid { grid-template-columns: 1fr 1fr; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .bento-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
-        
-        /* WEB DEV SERVICES */
+
+        /* SPECIFIC STYLES */
         .service-card { border: 1px solid #333; padding: 20px; border-radius: 15px; background: rgba(255,255,255,0.05); transition: 0.3s; }
         .service-card:hover { border-color: #00f3ff; background: rgba(0, 243, 255, 0.1); }
-
-        /* SKILLS & STATS */
+        
         .study-info h3 { font-size: 1.8rem; font-weight: bold; margin-bottom: 10px; color: white; }
         .skill span { display: block; margin-bottom: 5px; font-weight: bold; }
         .bar { width: 100%; height: 8px; background: #222; border-radius: 10px; overflow: hidden; }
         .fill { height: 100%; background: linear-gradient(90deg, #00f3ff, #b026ff); }
+        
         .stat-box { background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3); }
         .stat-box h4 { color: #ffd700; font-weight: bold; font-size: 1.3rem; }
         .stat-box span { font-size: 0.9rem; color: #ccc; }
         .tag { background: rgba(0, 243, 255, 0.1); color: #00f3ff; padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid rgba(0, 243, 255, 0.3); display: inline-block; margin-top: 10px; }
 
-        /* GAMING IMAGES */
         .gaming-container { display: flex; flex-direction: column; gap: 30px; align-items: center; }
         @media(min-width: 768px) { .gaming-container { flex-direction: row; } }
         .gamer-dp { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ffd700; margin: auto; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
         .ign { font-family: 'Orbitron'; font-size: 2.5rem; font-weight: bold; margin-bottom: 5px; }
 
-        /* CONTACT FORM */
-        .input-style { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #333; padding: 12px; color: white; border-radius: 5px; outline: none; margin-bottom: 10px; }
+        /* CONTACT */
+        .input-style { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #333; padding: 12px; color: white; border-radius: 5px; outline: none; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }
         .bento-card { background: rgba(30,30,30,0.7); padding: 25px; border-radius: 15px; display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
         .bento-card:hover { transform: translateY(-5px); border-color: white; background: rgba(255,255,255,0.15); }
         .icon-box { width: 50px; height: 50px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
         .insta .icon-box { color: #e1306c; } .yt .icon-box { color: #ff0000; } .tg .icon-box { color: #0088cc; }
 
-        /* === MUSIC BUTTON === */
+        /* FIXED INSTAGRAM BUTTON */
+        .view-more-btn { display: inline-block; margin-top: 20px; padding: 10px 30px; border: 1px solid #b026ff; color: #b026ff; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .view-more-btn:hover { background: #b026ff; color: white; box-shadow: 0 0 20px #b026ff; }
+
+        /* MUSIC BUTTON */
         .music-float { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: rgba(0, 0, 0, 0.6); border: 2px solid #b026ff; color: #b026ff; border-radius: 50%; cursor: pointer; z-index: 900; font-size: 1.2rem; backdrop-filter: blur(5px); transition: 0.3s; animation: pulse 2s infinite; display: flex; align-items: center; justify-content: center; }
         .music-float:hover { transform: scale(1.1); }
         .playing { animation: spin 4s linear infinite !important; border-color: #00f3ff; color: #00f3ff; box-shadow: 0 0 15px #00f3ff; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(176, 38, 255, 0.7); } 70% { box-shadow: 0 0 10px 10px rgba(176, 38, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(176, 38, 255, 0); } }
 
-        /* === VOICE OVERLAY (Gemini Style) === */
+        /* VOICE OVERLAY */
         .voice-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 2000; display: none; align-items: center; justify-content: center; flex-direction: column; }
         .pulsing-orb { width: 100px; height: 100px; background: linear-gradient(45deg, #b026ff, #00f3ff); border-radius: 50%; box-shadow: 0 0 50px #b026ff; animation: orb-pulse 1.5s infinite ease-in-out; margin-bottom: 30px; }
         @keyframes orb-pulse { 0% { transform: scale(1); box-shadow: 0 0 30px #b026ff; } 50% { transform: scale(1.3); box-shadow: 0 0 80px #00f3ff; } 100% { transform: scale(1); box-shadow: 0 0 30px #b026ff; } }
         .listening-text { font-family: 'Orbitron'; color: white; font-size: 1.5rem; letter-spacing: 2px; }
         .close-voice-btn { margin-top: 30px; background: transparent; border: 1px solid #666; color: #aaa; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
 
-        /* === CHATBOT UI === */
+        /* CHATBOT */
         .chat-float-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #b026ff; color: white; border-radius: 50%; border: none; font-size: 1.5rem; cursor: pointer; box-shadow: 0 0 20px rgba(176, 38, 255, 0.6); z-index: 1000; transition: 0.3s; animation: bounce 2s infinite; display: flex; align-items: center; justify-content: center; }
         .chat-container { position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px; background: rgba(15, 15, 20, 0.95); border: 1px solid #b026ff; border-radius: 20px; display: none; flex-direction: column; overflow: hidden; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 0 30px rgba(0,0,0,0.8); }
         @media(max-width: 480px) { .chat-container { width: 90%; right: 5%; bottom: 100px; height: 60vh; } }
@@ -251,7 +242,9 @@
                 <span style="border:1px solid white; padding:5px 15px; border-radius:10px;">CapCut</span>
                 <span style="border:1px solid white; padding:5px 15px; border-radius:10px;">Alight Motion</span>
             </div>
-            <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="view-more-btn">Check Portfolio on Instagram</a>
+            <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="view-more-btn">
+                <i class="fab fa-instagram"></i> Check Portfolio
+            </a>
         </div>
     </section>
 
@@ -275,9 +268,9 @@
         <div class="glass-card" style="margin-top: 30px;">
             <h3 style="margin-bottom: 20px; color: #00f3ff; text-align: center;">Send a Message</h3>
             <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
-                <input type="text" id="name" placeholder="Your Name" required class="input-style">
-                <input type="email" id="email" placeholder="Your Email" required class="input-style">
-                <textarea id="message" rows="3" placeholder="Type message..." required class="input-style"></textarea>
+                <input type="text" id="name" placeholder="Name" required class="input-style">
+                <input type="email" id="email" placeholder="Email" required class="input-style">
+                <textarea id="message" rows="3" placeholder="Message" required class="input-style"></textarea>
                 <button type="submit" class="btn btn-neon w-full" style="justify-content: center;">SEND DATA 🚀</button>
             </form>
         </div>
@@ -323,7 +316,7 @@
         import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
         // ⚠️ API KEY YAHAN PASTE KARNA ⚠️
-        const OPENROUTER_API_KEY = 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"; 
+        const OPENROUTER_API_KEY = "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"; 
         const SITE_URL = "https://pulkitk069-maker.github.io/pulkit-portfolio/";
 
         const firebaseConfig = {
@@ -341,7 +334,27 @@
         const analytics = getAnalytics(app);
         logEvent(analytics, 'page_view');
 
-        // === FAST AI LOGIC ===
+        // 🟢 FIX: ATTACH FUNCTIONS TO WINDOW (For Buttons to Work)
+        window.toggleChat = function() {
+            const chat = document.getElementById('chat-widget');
+            chat.style.display = (chat.style.display === "none" || chat.style.display === "") ? "flex" : "none";
+        }
+
+        window.toggleMusic = function() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            const icon = btn.querySelector('i');
+            if (music.paused) {
+                music.play().catch(e => alert("Tap page first!"));
+                btn.classList.add('playing');
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                music.pause();
+                btn.classList.remove('playing');
+                btn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
         window.sendMessage = async function() {
             const inputField = document.getElementById('userInput');
             const message = inputField.value.trim();
@@ -361,8 +374,7 @@
             }
 
             try {
-                // UPDATE: Using Gemini Flash Lite (Fastest Free Model)
-                // OpenRouter keys work for ALL free models. This is reliable.
+                // Using Gemini Flash Lite (Works with your Key & Fast)
                 const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
@@ -393,11 +405,9 @@
             inputField.disabled = false; inputField.focus();
         }
 
+        window.handleEnter = function(e) { if (e.key === 'Enter') sendMessage(); }
+
         // === HELPERS ===
-        window.toggleChat = function() {
-            const chat = document.getElementById('chat-widget');
-            chat.style.display = (chat.style.display === "none" || chat.style.display === "") ? "flex" : "none";
-        }
         function addMessage(text, sender) {
             const chatBody = document.getElementById('chat-messages');
             const div = document.createElement('div');
@@ -407,27 +417,11 @@
             chatBody.scrollTop = chatBody.scrollHeight;
             return div;
         }
-        window.handleEnter = function(e) { if (e.key === 'Enter') sendMessage(); }
 
         // === VOICE & MUSIC ===
         const synth = window.speechSynthesis;
         let recognition;
         
-        window.toggleMusic = function() {
-            const music = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicBtn');
-            const icon = btn.querySelector('i');
-            if (music.paused) {
-                music.play().catch(e => alert("Tap page first!"));
-                btn.classList.add('playing');
-                btn.innerHTML = '<i class="fas fa-pause"></i>';
-            } else {
-                music.pause();
-                btn.classList.remove('playing');
-                btn.innerHTML = '<i class="fas fa-play"></i>';
-            }
-        }
-
         if ('webkitSpeechRecognition' in window) {
             recognition = new webkitSpeechRecognition();
             recognition.continuous = false;
