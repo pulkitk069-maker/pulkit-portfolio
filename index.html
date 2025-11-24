@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulkit | The Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -30,11 +31,9 @@
                     <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Hello, I'm</h2>
                     <h1 class="hero-name">PULKIT</h1>
                     <h2 class="typing-wrapper">I am a <span class="type-text"></span><span class="cursor">|</span></h2>
-                    
                     <div class="quote breathe">
                         "Transforming ideas into digital reality. Whether it's complex <strong>Code</strong> or cinematic <strong>Visuals</strong> — I build experiences that leave a mark."
                     </div>
-                    
                     <div class="btn-group">
                         <a href="#gaming" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming</a>
                         <a href="#services" class="btn btn-neon"><i class="fas fa-code"></i> Web Services</a>
@@ -42,7 +41,7 @@
                 </div>
                 <div class="image-area alive-slow">
                     <div class="glow-circle"></div>
-                    <img src="./profile.jpg" alt="Pulkit Profile" class="profile-img" onerror="this.src='https://i.postimg.cc/W1RPTtvG/e2bd0af9b0bf0c3c49e6a4dd841071fe.jpg'">
+                    <img src="./profile.jpg" alt="Pulkit" class="profile-img" onerror="this.src='https://i.postimg.cc/W1RPTtvG/e2bd0af9b0bf0c3c49e6a4dd841071fe.jpg'">
                 </div>
             </div>
         </div>
@@ -51,25 +50,21 @@
     <section id="services" class="section-box">
         <h2 class="section-heading breathe">WEB <span class="text-cyan">SERVICES</span></h2>
         <div class="glass-card">
-            <p style="text-align:center; color:#aaa; margin-bottom:30px;">
-                Premium websites tailored for your brand.
-            </p>
-            
+            <p style="text-align:center; color:#aaa; margin-bottom:30px;">Premium websites tailored for your brand.</p>
             <div class="study-grid">
                 <div class="service-card">
                     <h3><i class="fas fa-user-astronaut text-cyan"></i> Portfolio Site</h3>
-                    <p style="color:#ccc; font-size:0.9rem;">Showcase your work with a professional, dark-mode design like this one.</p>
+                    <p style="color:#ccc; font-size:0.9rem;">Showcase your work with a professional, dark-mode design.</p>
                 </div>
                 <div class="service-card">
                     <h3><i class="fas fa-store text-gold"></i> Business Site</h3>
-                    <p style="color:#ccc; font-size:0.9rem;">Perfect landing pages for shops, startups, or restaurants.</p>
+                    <p style="color:#ccc; font-size:0.9rem;">Landing pages for shops & startups with SEO.</p>
                 </div>
                 <div class="service-card">
                     <h3><i class="fas fa-rocket text-neon"></i> Full Setup</h3>
-                    <p style="color:#ccc; font-size:0.9rem;">Complete Hosting, Domain connection & Free SSL Security.</p>
+                    <p style="color:#ccc; font-size:0.9rem;">Domain connection, SSL Security & Hosting.</p>
                 </div>
             </div>
-
             <div style="text-align:center; margin-top:40px;">
                 <a href="mailto:pulkitk069@gmail.com?subject=I want to create my website" class="btn btn-neon" style="display:inline-flex; width:auto; padding: 15px 30px;">
                     I want to create my website 🚀
@@ -89,9 +84,9 @@
                     <p style="margin-top: 20px; color: #888;">Currently in 1st Semester, focusing on building a strong foundation in programming logic and AI concepts.</p>
                 </div>
                 <div class="skills-list">
-                    <div class="skill"><span>C Programming</span> <div class="bar"><div class="fill" style="width:60%"></div></div></div>
-                    <div class="skill"><span>Python (AI)</span> <div class="bar"><div class="fill" style="width:40%"></div></div></div>
-                    <div class="skill"><span>Web Development</span> <div class="bar"><div class="fill" style="width:85%"></div></div></div>
+                    <div class="skill"><span>C++ / Logic</span> <div class="bar"><div class="fill w-60"></div></div></div>
+                    <div class="skill"><span>Python (AI)</span> <div class="bar"><div class="fill w-40"></div></div></div>
+                    <div class="skill"><span>Web Dev</span> <div class="bar"><div class="fill w-90"></div></div></div>
                 </div>
             </div>
         </div>
@@ -100,13 +95,13 @@
     <section id="gaming" class="section-box">
         <h2 class="section-heading breathe">ESPORTS <span class="text-gold">CAREER</span></h2>
         <div class="glass-card alive-slow" style="border-color: #ffd700;">
-            <div class="gaming-container">
-                <div class="gamer-left">
+            <div class="gaming-layout">
+                <div class="gamer-pic">
                     <img src="https://i.postimg.cc/Hsqg68RF/1cb6ac38e40451b6521fb8f7a9f40813.jpg" class="gamer-dp">
                 </div>
-                <div class="gamer-right text-center md:text-left">
+                <div class="gamer-info">
                     <h3 class="ign">「PULKIT'」</h3>
-                    <p class="uid">UID: <span class="text-gold" style="font-weight:bold; font-family:monospace; font-size:1.2rem;">55572783812</span></p>
+                    <p class="uid">UID: <span class="text-gold">55572783812</span></p>
                     <div class="stats-grid">
                         <div class="stat-box"><h4>Ace Dominator</h4><span>Highest Tier</span></div>
                         <div class="stat-box"><h4>5.20</h4><span>F/D Ratio</span></div>
@@ -135,41 +130,37 @@
     <section id="contact" class="section-box" style="padding-bottom: 100px;">
         <h2 class="section-heading breathe">CONNECT <span class="text-white">HUB</span></h2>
         
-        <div class="bento-grid">
-            <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta alive">
-                <div class="icon-box"><i class="fab fa-instagram"></i></div>
-                <div class="bento-text"><h4>Instagram</h4><p>@_pulkit1_</p></div>
-            </a>
-            <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt alive-slow">
-                <div class="icon-box"><i class="fab fa-youtube"></i></div>
-                <div class="bento-text"><h4>YouTube</h4><p>Subscribe</p></div>
-            </a>
-            <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg alive">
-                <div class="icon-box"><i class="fab fa-telegram"></i></div>
-                <div class="bento-text"><h4>Telegram</h4><p>Chat Now</p></div>
-            </a>
-        </div>
+        <div class="glass-card">
+            <div class="bento-grid">
+                <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg">
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
 
-        <div class="glass-card" style="margin-top: 30px;">
-            <h3 style="margin-bottom: 20px; color: #00f3ff;">Send a Message</h3>
-            <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
+            <form id="contactForm" style="margin-top: 40px; display: flex; flex-direction: column; gap: 15px;">
+                <h3 style="margin-bottom: 10px; color: #00f3ff; text-align: center;">Send a Message</h3>
                 <input type="text" id="name" placeholder="Your Name" required class="input-style">
                 <input type="email" id="email" placeholder="Your Email" required class="input-style">
                 <textarea id="message" rows="4" placeholder="Type message..." required class="input-style"></textarea>
-                <button type="submit" class="btn btn-neon w-full" style="justify-content: center;">SEND DATA 🚀</button>
+                <button type="submit" class="btn btn-neon w-full" style="justify-content: center;">SEND MESSAGE 🚀</button>
             </form>
         </div>
         
         <footer style="text-align: center; margin-top: 60px; color: #666; font-size: 0.8rem;">
             <p>SYSTEM STATUS: ONLINE</p>
-            <p style="margin-top: 10px; color: #00f3ff; font-weight: bold; letter-spacing: 1px;">
-                👀 SYSTEM VISITS: <span id="viewCounter">Calculating...</span>
+            <p style="margin-top: 10px; color: #00f3ff; font-weight: bold;">
+                👀 VISITS: <span id="viewCounter">...</span>
             </p>
             <p>© 2025 PULKIT PORTFOLIO</p>
         </footer>
     </section>
 
     <script type="module" src="script.js"></script>
-
 </body>
 </html>
