@@ -1,4 +1,4 @@
- import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
@@ -13,7 +13,6 @@ const firebaseConfig = {
     measurementId: "G-SMXZH47CCX"
 };
 
-// Initialize Firebase
 let app, db, analytics;
 try {
     app = initializeApp(firebaseConfig);
@@ -22,102 +21,7 @@ try {
     logEvent(analytics, 'page_view');
 } catch (e) { console.error(e); }
 
-// =========================================
-// 🐼 MUKUU AI LOGIC (Connected to Replit)
-// =========================================
-const BACKEND_URL = "https://2c67aea7-44d9-4621-bc83-51525f211188-00-3sssjc3dhyafv.sisko.replit.dev/chat";
-const synth = window.speechSynthesis;
-let recognition;
-
-window.toggleChat = function() {
-    const chat = document.getElementById('chat-widget');
-    chat.style.display = (chat.style.display === "none" || chat.style.display === "") ? "flex" : "none";
-}
-
-window.sendMessage = async function() {
-    const inputField = document.getElementById('userInput');
-    const message = inputField.value.trim();
-    if (!message) return;
-
-    addMessage(message, 'user');
-    inputField.value = ""; 
-    inputField.disabled = true;
-    const loadingDiv = addMessage("Thinking... 🐼", 'bot');
-
-    try {
-        const response = await fetch(BACKEND_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ "message": message })
-        });
-
-        const data = await response.json();
-        loadingDiv.remove();
-        addMessage(data.reply, 'bot');
-        speakText(data.reply); // Voice Output
-
-    } catch (error) {
-        loadingDiv.remove();
-        addMessage("Server Sleeping 😴 (Replit Run karo)", 'bot');
-    }
-    inputField.disabled = false; inputField.focus();
-}
-
-function addMessage(text, sender) {
-    const chatBody = document.getElementById('chat-messages');
-    const div = document.createElement('div');
-    div.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
-    // Convert Links to clickable HTML
-    const linkedText = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:#00f3ff;text-decoration:underline;">Open Link</a>');
-    div.innerHTML = linkedText;
-    chatBody.appendChild(div);
-    chatBody.scrollTop = chatBody.scrollHeight;
-    return div;
-}
-
-window.handleEnter = function(e) { if (e.key === 'Enter') sendMessage(); }
-
-// === VOICE LOGIC ===
-if ('webkitSpeechRecognition' in window) {
-    recognition = new webkitSpeechRecognition();
-    recognition.continuous = false;
-    recognition.lang = "en-IN";
-    recognition.onresult = function(e) {
-        const text = e.results[0][0].transcript;
-        document.querySelector('.listening-text').innerText = `"${text}"`;
-        setTimeout(() => {
-            stopVoice();
-            document.getElementById('userInput').value = text;
-            if(document.getElementById('chat-widget').style.display === 'none') toggleChat();
-            sendMessage();
-        }, 1000);
-    };
-}
-
-window.toggleVoice = function() {
-    if (!recognition) { alert("Use Chrome!"); return; }
-    document.getElementById('voice-overlay').style.display = 'flex';
-    document.querySelector('.listening-text').innerText = "Listening...";
-    recognition.start();
-}
-window.stopVoice = function() {
-    document.getElementById('voice-overlay').style.display = 'none';
-    recognition.stop();
-}
-
-function speakText(text) {
-    if (synth.speaking) synth.cancel();
-    // Clean text (remove emojis/links) for cleaner speech
-    const cleanText = text.replace(/(https?:\/\/[^\s]+)/g, 'link').replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF])/g, '');
-    const u = new SpeechSynthesisUtterance(cleanText);
-    u.rate = 1; u.pitch = 1.1;
-    const voices = synth.getVoices();
-    const v = voices.find(v => v.name.includes("Google") || v.name.includes("Female"));
-    if(v) u.voice = v;
-    synth.speak(u);
-}
-
-// === MUSIC & UTILS ===
+// === MUSIC PLAYER ===
 window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
@@ -133,7 +37,7 @@ window.toggleMusic = function() {
     }
 }
 
-// === STARTUP ===
+// === VISITOR COUNTER ===
 async function updateCounter() {
     if (!db) return;
     const counterEl = document.getElementById('viewCounter');
@@ -145,6 +49,7 @@ async function updateCounter() {
     } catch (e) { try { await setDoc(docRef, { count: 1 }); counterEl.innerText = 1; } catch(err){} }
 }
 
+// === TYPING ANIMATION ===
 const words = ["Video Editor", "Gamer", "BCA Student", "Web Developer"];
 let i = 0;
 function typeWriter() {
@@ -163,6 +68,7 @@ function eraseText() {
     else { i = (i+1)%words.length; setTimeout(typeWriter, 500); }
 }
 
+// === INITIALIZE ===
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     updateCounter();
