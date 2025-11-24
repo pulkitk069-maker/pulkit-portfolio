@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-// ⚠️ APNI FIREBASE KEY YAHA PASTE KARNA
+// ⚠️ PASTE YOUR FIREBASE KEY HERE
 const firebaseConfig = {
     apiKey: "AIzaSyCy6uOrEeDffvJxjXljV51174kJbE3ka2o",
     authDomain: "pulkit-portfolio-b4cdc.firebaseapp.com",
@@ -13,20 +13,22 @@ const firebaseConfig = {
     measurementId: "G-SMXZH47CCX"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const analytics = getAnalytics(app);
-logEvent(analytics, 'page_view');
+let app, db, analytics;
+try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    analytics = getAnalytics(app);
+    logEvent(analytics, 'page_view');
+} catch (e) { console.error(e); }
 
-// === MUSIC PLAYER LOGIC ===
-// Attached to window for HTML button access
+// === MUSIC LOGIC ===
 window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const icon = btn.querySelector('i');
 
     if (music.paused) {
-        music.play().catch(e => alert("Tap screen first!")); 
+        music.play().catch(e => alert("Tap anywhere on screen first!")); 
         btn.classList.add('playing');
         icon.classList.remove('fa-play');
         icon.classList.add('fa-pause');
@@ -40,6 +42,7 @@ window.toggleMusic = function() {
 
 // === VISITOR COUNTER ===
 async function updateCounter() {
+    if (!db) return;
     const counterEl = document.getElementById('viewCounter');
     const docRef = doc(db, "stats", "visits");
     try {
@@ -47,7 +50,6 @@ async function updateCounter() {
         const updatedSnap = await getDoc(docRef);
         counterEl.innerText = updatedSnap.data().count;
     } catch (error) {
-        // Create if doesn't exist
         try { await setDoc(docRef, { count: 1 }); counterEl.innerText = 1; } catch(e){}
     }
 }
@@ -80,7 +82,7 @@ function eraseText() {
     }
 }
 
-// === INITIALIZE ===
+// === STARTUP ===
 document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
     updateCounter();
@@ -98,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     message: document.getElementById('message').value,
                     timestamp: new Date()
                 });
-                alert("Sent! ✅");
+                alert("Message Sent! ✅");
                 form.reset();
-            } catch (e) { alert("Error sending."); }
+            } catch (e) { alert("Error sending message."); }
             btn.innerText = "SEND MESSAGE 🚀"; btn.disabled = false;
         });
     }
