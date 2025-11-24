@@ -1,9 +1,8 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-// ⚠️ YAHAN APNI FIREBASE KEY PASTE KARNA
+// ⚠️ APNI FIREBASE KEY YAHA PASTE KARNA
 const firebaseConfig = {
     apiKey: "AIzaSyCy6uOrEeDffvJxjXljV51174kJbE3ka2o",
     authDomain: "pulkit-portfolio-b4cdc.firebaseapp.com",
@@ -14,25 +13,20 @@ const firebaseConfig = {
     measurementId: "G-SMXZH47CCX"
 };
 
-// Init Firebase with Error Handling (Taaki site crash na ho agar net slow ho)
-let app, db, analytics;
-try {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    analytics = getAnalytics(app);
-    logEvent(analytics, 'page_view');
-} catch (e) {
-    console.error("Firebase init failed:", e);
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const analytics = getAnalytics(app);
+logEvent(analytics, 'page_view');
 
-// === 1. MUSIC PLAYER LOGIC (Fixed Scope) ===
+// === MUSIC PLAYER LOGIC ===
+// Attached to window for HTML button access
 window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const icon = btn.querySelector('i');
 
     if (music.paused) {
-        music.play().catch(e => alert("Please tap anywhere on screen first!")); 
+        music.play().catch(e => alert("Tap screen first!")); 
         btn.classList.add('playing');
         icon.classList.remove('fa-play');
         icon.classList.add('fa-pause');
@@ -44,9 +38,8 @@ window.toggleMusic = function() {
     }
 }
 
-// === 2. VISITOR COUNTER ===
+// === VISITOR COUNTER ===
 async function updateCounter() {
-    if (!db) return; // Agar firebase nahi chala toh skip karo
     const counterEl = document.getElementById('viewCounter');
     const docRef = doc(db, "stats", "visits");
     try {
@@ -54,13 +47,13 @@ async function updateCounter() {
         const updatedSnap = await getDoc(docRef);
         counterEl.innerText = updatedSnap.data().count;
     } catch (error) {
-        // First time create
+        // Create if doesn't exist
         try { await setDoc(docRef, { count: 1 }); counterEl.innerText = 1; } catch(e){}
     }
 }
 
-// === 3. TYPING ANIMATION (Ye Bina Firebase ke bhi chalega) ===
-const words = ["Video Editor", "Gamer", "BCA Student", "Tech Enthusiast"];
+// === TYPING ANIMATION ===
+const words = ["Video Editor", "Gamer", "BCA Student", "Web Developer"];
 let i = 0;
 function typeWriter() {
     const element = document.querySelector('.type-text');
@@ -87,18 +80,15 @@ function eraseText() {
     }
 }
 
-// === 4. STARTUP ===
+// === INITIALIZE ===
 document.addEventListener('DOMContentLoaded', () => {
-    typeWriter();      // Typing shuru
-    updateCounter();   // Visits count
+    typeWriter();
+    updateCounter();
 
-    // Form Logic
     const form = document.getElementById('contactForm');
     if(form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!db) { alert("Database not connected!"); return; }
-            
             const btn = form.querySelector('button');
             btn.innerText = "Sending..."; btn.disabled = true;
             try {
@@ -108,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     message: document.getElementById('message').value,
                     timestamp: new Date()
                 });
-                alert("Message Sent! ✅");
+                alert("Sent! ✅");
                 form.reset();
-            } catch (e) { alert("Error sending message."); }
+            } catch (e) { alert("Error sending."); }
             btn.innerText = "SEND MESSAGE 🚀"; btn.disabled = false;
         });
     }
