@@ -1,3 +1,4 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
@@ -13,20 +14,25 @@ const firebaseConfig = {
     measurementId: "G-SMXZH47CCX"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const analytics = getAnalytics(app);
-logEvent(analytics, 'page_view');
+// Init Firebase with Error Handling (Taaki site crash na ho agar net slow ho)
+let app, db, analytics;
+try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    analytics = getAnalytics(app);
+    logEvent(analytics, 'page_view');
+} catch (e) {
+    console.error("Firebase init failed:", e);
+}
 
-// === 1. MUSIC PLAYER LOGIC ===
-// Attach to window to make sure HTML button can find it
+// === 1. MUSIC PLAYER LOGIC (Fixed Scope) ===
 window.toggleMusic = function() {
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicBtn');
     const icon = btn.querySelector('i');
 
     if (music.paused) {
-        music.play().catch(e => alert("Tap anywhere on screen first!")); 
+        music.play().catch(e => alert("Please tap anywhere on screen first!")); 
         btn.classList.add('playing');
         icon.classList.remove('fa-play');
         icon.classList.add('fa-pause');
@@ -40,23 +46,21 @@ window.toggleMusic = function() {
 
 // === 2. VISITOR COUNTER ===
 async function updateCounter() {
+    if (!db) return; // Agar firebase nahi chala toh skip karo
     const counterEl = document.getElementById('viewCounter');
-    if(!counterEl) return;
-    
     const docRef = doc(db, "stats", "visits");
     try {
         await updateDoc(docRef, { count: increment(1) });
         const updatedSnap = await getDoc(docRef);
         counterEl.innerText = updatedSnap.data().count;
     } catch (error) {
-        console.log("Initializing Counter...");
-        // If document doesn't exist, create it
+        // First time create
         try { await setDoc(docRef, { count: 1 }); counterEl.innerText = 1; } catch(e){}
     }
 }
 
-// === 3. TYPING ANIMATION ===
-const words = ["Video Editor", "Gamer", "BCA Student", "Web Developer"];
+// === 3. TYPING ANIMATION (Ye Bina Firebase ke bhi chalega) ===
+const words = ["Video Editor", "Gamer", "BCA Student", "Tech Enthusiast"];
 let i = 0;
 function typeWriter() {
     const element = document.querySelector('.type-text');
@@ -83,20 +87,20 @@ function eraseText() {
     }
 }
 
-// === 4. INITIALIZE ===
+// === 4. STARTUP ===
 document.addEventListener('DOMContentLoaded', () => {
-    typeWriter();
-    updateCounter();
+    typeWriter();      // Typing shuru
+    updateCounter();   // Visits count
 
-    // Contact Form Logic
+    // Form Logic
     const form = document.getElementById('contactForm');
     if(form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (!db) { alert("Database not connected!"); return; }
+            
             const btn = form.querySelector('button');
-            const originalText = btn.innerText;
             btn.innerText = "Sending..."; btn.disabled = true;
-
             try {
                 await addDoc(collection(db, "messages"), {
                     name: document.getElementById('name').value,
@@ -106,11 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 alert("Message Sent! ✅");
                 form.reset();
-            } catch (e) { 
-                alert("Error sending message. Check internet connection."); 
-                console.error(e);
-            }
-            btn.innerText = originalText; btn.disabled = false;
+            } catch (e) { alert("Error sending message."); }
+            btn.innerText = "SEND MESSAGE 🚀"; btn.disabled = false;
         });
     }
 });
