@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulkit | The Creator</title>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,29 +21,50 @@
 
     <nav class="navbar">
         <div class="logo">PULKIT<span class="dot">.</span></div>
-        <a href="#contact" class="hire-btn">HIRE ME</a>
+        <a href="#contact" class="hire-btn">AVAILABLE FOR WORK</a>
     </nav>
 
     <section id="home" class="hero-section">
         <div class="container">
             <div class="hero-content">
                 <div class="text-area alive">
-                    <div class="badge">PORTFOLIO V.18</div>
-                    <h2 class="sub-text">Hello, I'm</h2>
+                    <div class="badge">PORTFOLIO V.17</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Hello, I'm</h2>
                     <h1 class="hero-name">PULKIT</h1>
                     <h2 class="typing-wrapper">I am a <span class="type-text"></span><span class="cursor">|</span></h2>
+                    
                     <div class="quote breathe">
                         "I don't just play the game, I <span class="text-gold">Dominate</span> it. I don't just edit videos, I <span class="text-neon">Create Art</span>."
                     </div>
+                    
                     <div class="btn-group">
-                        <a href="#gaming" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming</a>
-                        <a href="#editing" class="btn btn-neon"><i class="fas fa-film"></i> Editing</a>
+                        <a href="#gaming" class="btn btn-gold"><i class="fas fa-gamepad"></i> Gaming Profile</a>
+                        <a href="#editing" class="btn btn-neon"><i class="fas fa-film"></i> Visual Work</a>
                     </div>
                 </div>
                 <div class="image-area alive-slow">
                     <div class="glow-circle"></div>
-                    <img src="./profile.jpg" alt="Profile" class="profile-img" onerror="this.src='https://i.postimg.cc/W1RPTtvG/e2bd0af9b0bf0c3c49e6a4dd841071fe.jpg'">
+                    <img src="https://i.postimg.cc/W1RPTtvG/e2bd0af9b0bf0c3c49e6a4dd841071fe.jpg" alt="Pulkit Profile" class="profile-img">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-box">
+        <h2 class="section-heading breathe">WEB <span class="text-cyan">SERVICES</span></h2>
+        <div class="glass-card">
+            <div class="study-grid">
+                <div class="service-card">
+                    <h3 style="color:white; margin-bottom:10px;"><i class="fas fa-code text-cyan"></i> Portfolio Websites</h3>
+                    <p style="color:#ccc;">Get a professional dark-mode portfolio like this one to showcase your skills.</p>
+                </div>
+                <div class="service-card">
+                    <h3 style="color:white; margin-bottom:10px;"><i class="fas fa-briefcase text-gold"></i> Business Sites</h3>
+                    <p style="color:#ccc;">Clean, responsive websites for restaurants, shops, and startups.</p>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <a href="#contact" class="btn btn-neon" style="display:inline-flex;">Start a Project 🚀</a>
             </div>
         </div>
     </section>
@@ -54,34 +74,36 @@
         <div class="glass-card alive">
             <div class="study-grid">
                 <div class="study-info">
-                    <h3><i class="fas fa-university text-cyan"></i> DDU University</h3>
-                    <p>BCA (Machine Learning & Data Science)</p>
-                    <span class="tag">1st Semester</span>
+                    <h3 style="font-size: 2rem; font-weight: bold; color: white; margin-bottom: 10px;"><i class="fas fa-university text-cyan"></i> DDU University</h3>
+                    <p style="color: #ccc; font-size: 1.2rem;">Bachelor of Computer Applications (BCA)</p>
+                    <span class="tag">Specialization: ML & Data Science</span>
+                    <p style="margin-top: 20px; color: #888;">Currently in 1st Semester, focusing on building a strong foundation in programming logic and AI concepts.</p>
                 </div>
                 <div class="skills-list">
-                    <div class="skill"><span>C++ & Logic</span> <div class="bar"><div class="fill" style="width:60%"></div></div></div>
-                    <div class="skill"><span>Python (AI)</span> <div class="bar"><div class="fill" style="width:40%"></div></div></div>
-                    <div class="skill"><span>Web Dev</span> <div class="bar"><div class="fill" style="width:80%"></div></div></div>
+                    <div class="skill"><span>C Programming (Logic Building)</span> <div class="bar"><div class="fill" style="width:60%"></div></div></div>
+                    <div class="skill"><span>Python (AI & Scripting)</span> <div class="bar"><div class="fill" style="width:40%"></div></div></div>
+                    <div class="skill"><span>AI Tools & Prompting</span> <div class="bar"><div class="fill" style="width:95%"></div></div></div>
+                    <div class="skill"><span>Web Dev (HTML/CSS)</span> <div class="bar"><div class="fill" style="width:70%"></div></div></div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="gaming" class="section-box">
-        <h2 class="section-heading breathe">BGMI <span class="text-gold">STATS</span></h2>
+        <h2 class="section-heading breathe">ESPORTS <span class="text-gold">CAREER</span></h2>
         <div class="glass-card alive-slow" style="border-color: #ffd700;">
-            <div class="gaming-layout">
-                <div class="gamer-pic">
+            <div class="gaming-container">
+                <div class="gamer-left">
                     <img src="https://i.postimg.cc/gkdWbVJm/IMG-20251120-WA0024.jpg" class="gamer-dp">
                 </div>
-                <div class="gamer-info">
+                <div class="gamer-right text-center md:text-left">
                     <h3 class="ign">「PULKIT'」</h3>
-                    <p class="uid">UID: <span class="text-gold">55572783812</span></p>
+                    <p class="uid">UID: <span class="text-gold" style="font-weight:bold; font-family:monospace; font-size:1.2rem;">55572783812</span></p>
                     <div class="stats-grid">
-                        <div class="stat-box"><h4>Ace Dominator</h4><span>Rank</span></div>
-                        <div class="stat-box"><h4>5.20</h4><span>F/D</span></div>
-                        <div class="stat-box"><h4>Assaulter</h4><span>Role</span></div>
-                        <div class="stat-box"><h4>POCO M4</h4><span>Device</span></div>
+                        <div class="stat-box"><h4>Ace Dominator</h4><span>Highest Tier</span></div>
+                        <div class="stat-box"><h4>5.20</h4><span>F/D Ratio</span></div>
+                        <div class="stat-box"><h4>Assaulter</h4><span>Main Role</span></div>
+                        <div class="stat-box"><h4>POCO M4 Pro</h4><span>Device</span></div>
                     </div>
                 </div>
             </div>
@@ -94,45 +116,56 @@
             <i class="fas fa-video" style="font-size: 3rem; color: #b026ff; margin-bottom: 20px;"></i>
             <h3 style="font-size: 2rem; font-weight: bold; margin-bottom: 20px;">Advanced Video Editing</h3>
             <p style="color: #ccc; font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px auto;">
-                Specialized in CapCut & Alight Motion. Creating cinematic visuals with complex transitions.
+                I specialize in creating high-quality visual content. My editing workflow involves complex transitions, color grading, and beat-syncing.
             </p>
+            <div class="tools-grid" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;">
+                <div class="tool-badge" style="border: 1px solid #fff; padding: 10px 20px; border-radius: 10px;">
+                    <i class="fas fa-cut"></i> CapCut
+                </div>
+                <div class="tool-badge" style="border: 1px solid #fff; padding: 10px 20px; border-radius: 10px;">
+                    <i class="fas fa-layer-group"></i> Alight Motion
+                </div>
+            </div>
             <a href="https://www.instagram.com/_kaneki19_edits_?igsh=MTYwdzR3aGxzaWcxcg==" target="_blank" class="view-more-btn">
-                <i class="fab fa-instagram"></i> Watch My Edits
+                Check My Portfolio on Instagram
             </a>
         </div>
     </section>
 
-    <section id="contact" class="section-box" style="padding-bottom: 120px;">
-        <h2 class="section-heading breathe">CONNECT <span class="text-white">NOW</span></h2>
-        <div class="glass-card">
-            <div class="bento-grid">
-                <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta">
-                    <div class="icon-box"><i class="fab fa-instagram"></i></div>
-                    <div class="bento-text"><h4>Instagram</h4></div>
-                </a>
-                <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt">
-                    <div class="icon-box"><i class="fab fa-youtube"></i></div>
-                    <div class="bento-text"><h4>YouTube</h4></div>
-                </a>
-                <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg">
-                    <div class="icon-box"><i class="fab fa-telegram"></i></div>
-                    <div class="bento-text"><h4>Telegram</h4></div>
-                </a>
-            </div>
+    <section id="contact" class="section-box" style="padding-bottom: 100px;">
+        <h2 class="section-heading breathe">CONNECT <span class="text-white">HUB</span></h2>
+        
+        <div class="bento-grid">
+            <a href="https://www.instagram.com/_pulkit1_?igsh=bHp2Z2M0MjBpMGNj" target="_blank" class="bento-card insta alive">
+                <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                <div class="bento-text"><h4>Instagram</h4><p>@_pulkit1_</p></div>
+            </a>
+            
+            <a href="https://youtube.com/@pulkitk2920?si=3NRx9rULOUjnL2mz" target="_blank" class="bento-card yt alive-slow">
+                <div class="icon-box"><i class="fab fa-youtube"></i></div>
+                <div class="bento-text"><h4>YouTube</h4><p>Subscribe</p></div>
+            </a>
 
-            <form id="contactForm" style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px;">
-                <h3 style="margin-bottom: 10px; color: #00f3ff;">Send Message</h3>
+            <a href="https://t.me/Suspicious_0ne" target="_blank" class="bento-card tg alive">
+                <div class="icon-box"><i class="fab fa-telegram"></i></div>
+                <div class="bento-text"><h4>Telegram</h4><p>Chat Now</p></div>
+            </a>
+        </div>
+
+        <div class="glass-card" style="margin-top: 30px;">
+            <h3 style="margin-bottom: 20px; color: #00f3ff;">Send a Message</h3>
+            <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
                 <input type="text" id="name" placeholder="Your Name" required class="input-style">
                 <input type="email" id="email" placeholder="Your Email" required class="input-style">
-                <textarea id="message" rows="4" placeholder="Type your message..." required class="input-style"></textarea>
-                <button type="submit" class="btn btn-neon w-full" style="justify-content: center;">SEND MESSAGE 🚀</button>
+                <textarea id="message" rows="4" placeholder="Type message..." required class="input-style"></textarea>
+                <button type="submit" class="btn btn-neon w-full" style="justify-content: center;">SEND DATA 🚀</button>
             </form>
         </div>
         
         <footer style="text-align: center; margin-top: 60px; color: #666; font-size: 0.8rem;">
             <p>SYSTEM STATUS: ONLINE</p>
-            <p style="margin-top: 10px; color: #00f3ff; font-weight: bold;">
-                👀 SYSTEM VISITS: <span id="viewCounter">...</span>
+            <p style="margin-top: 10px; color: #00f3ff; font-weight: bold; letter-spacing: 1px;">
+                👀 SYSTEM VISITS: <span id="viewCounter">Calculating...</span>
             </p>
             <p>© 2025 PULKIT PORTFOLIO</p>
         </footer>
