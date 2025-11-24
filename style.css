@@ -1,4 +1,4 @@
-/* GLOBAL */
+/* === GLOBAL STYLES === */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background-color: #000; color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #000; } ::-webkit-scrollbar-thumb { background: #b026ff; border-radius: 10px; }
@@ -12,7 +12,7 @@ body { background-color: #000; color: white; font-family: 'Outfit', sans-serif; 
 .hire-btn { border: 1px solid #00f3ff; color: #00f3ff; padding: 8px 25px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; text-decoration: none; transition: 0.3s; }
 .hire-btn:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
 
-/* HERO */
+/* HERO SECTION */
 .hero-section { min-height: 100vh; display: flex; align-items: center; padding: 100px 0; }
 .container { width: 90%; max-width: 1200px; margin: auto; }
 .hero-content { display: flex; flex-direction: column-reverse; align-items: center; gap: 40px; }
@@ -35,27 +35,51 @@ body { background-color: #000; color: white; font-family: 'Outfit', sans-serif; 
 .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.2); position: relative; z-index: 2; box-shadow: 0 0 40px rgba(0, 243, 255, 0.3); }
 .glow-circle { position: absolute; inset: -20px; background: #00f3ff; filter: blur(60px); opacity: 0.5; border-radius: 50%; z-index: 1; animation: pulse 3s infinite; }
 
-/* SECTIONS & CARDS */
+/* SECTIONS */
 .section-box { padding: 80px 5%; border-top: 1px solid rgba(255,255,255,0.1); }
 .section-heading { font-family: 'Orbitron'; font-size: 2.2rem; text-align: center; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
 .glass-card { background: rgba(15, 15, 20, 0.85); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 25px; backdrop-filter: blur(15px); max-width: 900px; margin: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
+/* ACADEMIC - FIX: Bars Visible */
+.study-grid { display: grid; gap: 30px; } @media(min-width: 768px) { .study-grid { grid-template-columns: 1fr 1fr; } }
+.study-info h3 { font-size: 1.8rem; margin-bottom: 10px; color: white; font-weight: bold; }
+.skills-list { display: flex; flex-direction: column; gap: 20px; }
+.skill span { display: block; margin-bottom: 5px; font-weight: bold; }
+.bar { width: 100%; height: 10px; background: #222; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
+.fill { height: 100%; background: linear-gradient(90deg, #00f3ff, #b026ff); border-radius: 10px; }
+.w-60 { width: 60%; } .w-40 { width: 40%; } .w-90 { width: 90%; } .w-85 { width: 85%; }
+.tag { background: rgba(0, 243, 255, 0.1); color: #00f3ff; padding: 5px 15px; border-radius: 5px; font-size: 0.9rem; border: 1px solid rgba(0, 243, 255, 0.3); display: inline-block; margin-top: 10px; }
+
+/* GAMING */
+.gaming-layout { display: flex; flex-direction: column; gap: 30px; align-items: center; } @media(min-width: 768px) { .gaming-layout { flex-direction: row; justify-content: center; } }
+.gamer-dp { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #ffd700; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; width: 100%; }
+.stat-box { background: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3); }
+.stat-box h4 { color: #ffd700; font-weight: bold; font-size: 1.2rem; } .stat-box span { font-size: 0.9rem; color: #ccc; }
+
+/* SERVICES */
 .service-card { border: 1px solid #333; padding: 20px; border-radius: 15px; background: rgba(255,255,255,0.05); transition: 0.3s; }
 .service-card:hover { border-color: #00f3ff; background: rgba(0, 243, 255, 0.1); transform: translateY(-5px); }
 .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: white; } .service-card p { font-size: 0.9rem; color: #ccc; }
-.study-grid, .stats-grid { display: grid; gap: 20px; } @media(min-width: 768px) { .study-grid { grid-template-columns: 1fr 1fr 1fr; } .stats-grid { grid-template-columns: 1fr 1fr; } }
-.gaming-layout { display: flex; flex-direction: column; gap: 30px; align-items: center; } @media(min-width: 768px) { .gaming-layout { flex-direction: row; justify-content: center; } }
-.gamer-dp { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #ffd700; }
-.stats-grid { width: 100%; } .stat-box { background: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 10px; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3); }
-.stat-box h4 { color: #ffd700; font-weight: bold; font-size: 1.2rem; } .stat-box span { font-size: 0.9rem; color: #ccc; }
+
+/* CONTACT - FIX: BENTO GRID IS BACK */
+.bento-grid { display: grid; gap: 20px; grid-template-columns: 1fr 1fr 1fr; margin-bottom: 30px; }
+.bento-card { 
+    background: rgba(30,30,30,0.6); border: 1px solid #333; 
+    height: 100px; /* Fixed height for boxes */
+    border-radius: 20px; display: flex; align-items: center; justify-content: center; 
+    text-decoration: none; color: white; transition: 0.3s; 
+    font-size: 2.5rem; /* Big Icons */
+}
+.bento-card:hover { transform: translateY(-5px); border-color: white; background: rgba(255,255,255,0.1); }
+.insta { color: #e1306c; } .yt { color: red; } .tg { color: #0088cc; }
+
 .view-more-btn { display: inline-block; padding: 10px 30px; border: 1px solid #b026ff; color: #b026ff; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: 0.3s; }
 .view-more-btn:hover { background: #b026ff; color: white; box-shadow: 0 0 20px #b026ff; }
-.bento-grid { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; }
-.bento-card { background: rgba(30,30,30,0.6); border: 1px solid #333; padding: 20px; border-radius: 15px; color: white; font-size: 1.5rem; transition: 0.3s; }
-.bento-card:hover { transform: translateY(-5px); border-color: white; }
 .input-style { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid #333; padding: 12px; border-radius: 5px; color: white; outline: none; font-family: 'Outfit'; }
 
 /* MUSIC BUTTON */
-.music-float { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background: rgba(0, 0, 0, 0.7); border: 2px solid #b026ff; color: #b026ff; border-radius: 50%; cursor: pointer; z-index: 900; font-size: 1.2rem; backdrop-filter: blur(5px); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+.music-float { position: fixed; bottom: 30px; left: 30px; width: 50px; height: 50px; background: rgba(0, 0, 0, 0.7); border: 2px solid #b026ff; color: #b026ff; border-radius: 50%; cursor: pointer; z-index: 900; font-size: 1.2rem; backdrop-filter: blur(5px); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
 .music-float:hover { transform: scale(1.1); } .playing { animation: spin 4s linear infinite; border-color: #00f3ff; color: #00f3ff; box-shadow: 0 0 15px #00f3ff; }
 
 /* ANIMATIONS */
